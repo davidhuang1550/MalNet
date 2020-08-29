@@ -1,0 +1,20 @@
+
+
+.description-text {
+    line-height: 2;
+    color:gray;
+    text-indent: 50px;
+}
+
+.description-body {
+    height: 600px;
+
+}
+.description-header {
+    color:gray;
+    width: 100%;
+    text-align: center;
+    padding-top:50px;
+    padding-bottom: 50px;
+}
+

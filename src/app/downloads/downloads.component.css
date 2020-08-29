@@ -1,0 +1,26 @@
+
+.downloads-container {
+    margin-top: 200px;
+}
+
+.downloads-content {
+    padding: 25px;
+    background-color: #007ee5;
+    text-align: center;
+}
+
+.downloads-content h1 {
+    padding-bottom: 20px;
+}
+.downloads-content p {
+    padding-bottom: 20px;
+}
+
+.downloads-content i {
+    color: white;
+}
+
+.downloads-content .fa-dropbox:hover {
+    color: #838383;
+    cursor: pointer;
+}
