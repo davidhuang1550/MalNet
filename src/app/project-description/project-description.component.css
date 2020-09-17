@@ -1,15 +1,11 @@
 
 
 .description-text {
-    line-height: 2;
+    line-height: 2.5;
     color:gray;
-    text-indent: 50px;
 }
 
-.description-body {
-    height: 600px;
 
-}
 .description-header {
     color:gray;
     width: 100%;
@@ -18,3 +14,17 @@
     padding-bottom: 50px;
 }
 
+.description-body {
+    padding-top:20px;
+    padding-bottom: 10px;
+}
+
+.img-p {
+    display: flex;
+    align-items: center;
+}
+
+#About{
+    margin-top:50px;
+    margin-bottom:100px;
+}

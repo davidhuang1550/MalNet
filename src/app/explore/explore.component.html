@@ -1,0 +1,39 @@
+
+<div class="explore-container container">
+    <mat-tab-group [selectedIndex]="position" animationDuration="10ms">
+        <mat-tab label="Graph" #graphTip="ngbTooltip" tooltipClass="tool-tip-custom" placement="top" ngbTooltip="Function Call Graphes">
+            <div class="row">
+                <div class="col-md-5 padding-200">
+                    <div class="control-section" style="overflow:hidden;">
+                        <div class="col-lg-12" #datatip="ngbTooltip" tooltipClass="tool-tip-custom" placement="left" ngbTooltip="Select down to view!">
+                            <div class="control_wrapper mat-raised-button">
+                                <ejs-treeview  #treeGraph (nodeSelected)="onNodeSelectedGraph($event)" class="ejs-tree" id="default"  [fields]='graphFields'></ejs-treeview>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-7 padding-200">
+                    <div id="graph-container" >
+
+                    </div>
+                </div>
+            </div>
+        </mat-tab>
+        <mat-tab label="Image" #imageTip="ngbTooltip" tooltipClass="tool-tip-custom" placement="right" ngbTooltip="Image Data Graphs">
+            <div class="row">
+                <div class="col-md-5 padding-200">
+                    <div class="control-section" style="overflow:hidden;">
+                        <div class="col-lg-12">
+                            <div class="control_wrapper mat-raised-button">
+                                <ejs-treeview #tree (nodeSelected)="onNodeSelectedImage($event)" class="ejs-tree" id="default"  [fields]='fields'></ejs-treeview>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-7 padding-200">
+                    <img class="selected-img " src='{{image}}'/>
+                </div>
+            </div>
+        </mat-tab>
+    </mat-tab-group>
+</div>

@@ -1,0 +1,55 @@
+.control_wrapper {
+    max-width: 500px;
+    margin: auto;
+    border: 1px solid #dddddd;
+    border-radius: 3px;
+}
+
+.padding-200 {
+    padding-bottom: 200px;
+}
+.tab-content {
+    width: 100%;
+}
+.explore-container {
+    padding-top:200px;
+}
+.ejs-tree {
+    min-height:700px;
+    max-height:700px;
+    overflow: auto;
+}
+
+.selected-img {
+    width:700px;
+}
+
+@media (max-width: 812px){
+    .selected-img{
+        width: 500px;
+    }
+    .ejs-tree {
+        min-height:400px;
+        max-height:400px;
+    }
+}
+.popover {width:350px;max-width:1500px;}
+.popover-content h4 {
+    color: #00A1FF;
+}
+.popover-content h4 small {
+    color: black;
+}
+.popover-content button.btn-primary {
+    color: #00A1FF;
+    border-color:#00A1FF;
+    background:white;
+}
+
+.popover-content button.btn-default {
+    color: gray;
+    border-color:gray;
+}
+.e-treeview > .e-ul  {
+    overflow:auto !important;
+}

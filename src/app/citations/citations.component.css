@@ -1,0 +1,45 @@
+hr {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+.citations-header {
+    color:gray;
+    width: 100%;
+    text-align: center;
+    padding-top:50px;
+    padding-bottom: 50px;
+}
+.display-in {
+    display: inline-block;
+}
+.display-in  a {
+    color: #585858;
+}
+
+.title {
+    font-size: 1.3rem;
+    color: #505050;
+}
+
+.display-in a:hover {
+    color: #2196F3;
+}
+
+p {
+    margin-bottom: 0px !important;
+}
+.links a{
+    color: #2196F3;
+}
+
+.links p {
+    color: #2196F3;
+}
+
+.links i {
+    color: #2196F3;
+}
+
+.citation-content {
+    margin: 25px;
+}

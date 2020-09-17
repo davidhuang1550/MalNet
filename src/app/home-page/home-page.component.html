@@ -2,13 +2,30 @@
     <div class="intro-body">
         <div class="container">
             <div class="row">
-                <div class="col-lg-6 mx-auto">
-                    <div>
-                        <img width="150" height="150" src="../../assets/malware_symbol.png"/>
-                    <h1 >Explore Now</h1>
-                    </div>
-                    <div  class="card card-5" id="quote-container">
-                        <input class="dark-grey input form-control border-0" type="search" placeholder="search">
+                <div class="col-xs-8 mx-auto">
+                    <div class="card card-5">
+                        <div>
+                            <img width="420px" src="../../assets/logo.png"/>
+                            <p>MalNet is a hierarchical image and graph database designed to assist machine learning and security researchers in developing methods to detect malicious software.
+                                We release over 1,200,000 images and graphs spanning across 696 families and 47 types of malware, organized according to the Euphony Hierarchy. Click <a href="https://androzoo.uni.lu/labels">here</a> to learn more about MalNet.</p>
+                        </div>
+                        <div id="quote-container">
+                            <!--<ejs-dropdowntree (select)="select($event)" id='dropdowntree' [fields]='fields' placeholder='Search Malnet...'></ejs-dropdowntree>-->
+                            <mat-button-toggle-group (change)="toggleBtnAction(toggleBtn)"  [(ngModel)]="toggleBtn"  #group="matButtonToggleGroup" name="fontStyle" aria-label="Font Style">
+                                <mat-button-toggle class="mat-raised-button" value="Graph">Graph</mat-button-toggle>
+                                <mat-button-toggle class="mat-raised-button" value="Image">Image</mat-button-toggle>
+                            </mat-button-toggle-group>
+                            <div class="input-group mb-3">
+                                <div class="input-group-append search-container rounded">
+                                    <button class="btn btn-outline-secondary search-btn" type="button"><i class="fas fa-search"></i></button>
+                                <ng-select2  [data]="exampleData"
+                                            [placeholder]="'Search Malnet...'"
+                                            (valueChanged)="select($event)"
+                                            [width]="450"></ng-select2>
+                                </div>
+
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -18,4 +35,3 @@
     </div>
 
 </header>
-

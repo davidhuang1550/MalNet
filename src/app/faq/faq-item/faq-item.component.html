@@ -1,0 +1,11 @@
+<div class="toggle">
+    <div class="toggle-title" [ngClass]="opened ? 'active' : ''" (click)="toggle()">
+            <h3>
+                <i></i>
+                <span class="title-name">{{title}}</span>
+            </h3>
+        </div>
+        <div class="toggle-inner" [ngClass]="opened ? 'display-opened' : 'display-closed'">
+            <p>{{title}}</p>
+        </div>
+</div>

@@ -1,0 +1,46 @@
+@import '../node_modules/@syncfusion/ej2-base/styles/material.css';
+@import '../node_modules/@syncfusion/ej2-buttons/styles/material.css';
+@import '../node_modules/@syncfusion/ej2-dropdowns/styles/material.css';
+@import '../node_modules/@syncfusion/ej2-navigations/styles/material.css';
+@import '../node_modules/@syncfusion/ej2-inputs/styles/material.css';
+@import '../node_modules/@syncfusion/ej2-popups/styles/material.css';
+@import '../node_modules/@syncfusion/ej2-lists/styles/material.css';
+@import '../node_modules/@syncfusion/ej2-angular-dropdowns/styles/material.css';
+@import "../node_modules/@syncfusion/ej2-base/styles/material.css";
+@import "../node_modules/@syncfusion/ej2-inputs/styles/material.css";
+@import "../node_modules/@syncfusion/ej2-buttons/styles/material.css";
+@import "../node_modules/bootstrap/dist/css/bootstrap.css";
+.dark-grey {
+    color: grey;
+}
+
+.color-white {
+    color: white;
+}
+.select2-dropdown {
+    margin-top: -35px!important;
+}
+.select2-container .select2-selection--single {
+    height:38px !important;
+}
+.select2-container .select2-selection--single .select2-selection__rendered {
+    padding-top:5px!important;
+}
+
+.select2-container--default .select2-selection--single .select2-selection__arrow b {
+    border-color: white!important;
+    border-style: none!important;
+}
+
+.select2-container--default .select2-selection--single .select2-selection__rendered {
+    text-align:left!important;
+}
+
+.tool-tip-custom .tooltip-inner {
+    background-color: #2E3434!important;
+}
+.select2-container--default .select2-selection--single {
+    border: 0px!important;
+}
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

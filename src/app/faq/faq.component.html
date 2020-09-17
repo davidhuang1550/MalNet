@@ -1,17 +1,13 @@
+<section id="Faq">
 <div class="container">
 
     <section>
-        <h1>FREQUENTLY ASKED QUESTION<span>S</span></h1>
+        <h2 class="faq-header">Frequently Asked Question<span>(s)</span></h2>
     </section>
-    <div class="toggle" *ngFor="let faq of faq | keyvalue">
-        <div class="toggle-title" (click)="toggle()">
-            <h3>
-                <i></i>
-                <span class="title-name">{{faq.key}}</span>
-            </h3>
-        </div>
-        <div class="toggle-inner" [ngClass]="">
-            <p>{{faq.value}}</p>
-        </div>
+    <div *ngFor="let faq of faq | keyvalue">
+      <app-faq-item
+              [title]="faq.key"
+              [text]="faq.value" ></app-faq-item>
     </div><!-- END OF TOGGLE -->
 </div>
+</section>

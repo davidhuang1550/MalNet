@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NavView } from './nav.view';
 import $ from 'jquery';
 import {Constant} from '../constants/Constants';
+import {EdgelistService} from '../service/edgelist.service';
 @Component({
   selector: 'app-nav',
   templateUrl: './nav.component.html',
@@ -31,6 +32,11 @@ export class NavComponent implements OnInit {
       }
     });
   }
+
+  scroll(el: HTMLElement) {
+    el.scrollIntoView();
+  }
+
   get navView(): NavView {
     return this._navView;
   }

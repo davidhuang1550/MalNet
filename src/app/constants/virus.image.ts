@@ -1,0 +1,76 @@
+
+export const VIRUS_IMAGE = [
+    {
+        "id": "0",
+        "text": "Search MalNet..."
+    },
+    {
+        "id":"1",
+        "text":"addisplay",
+        "children":[
+            {
+                "id":"2",
+                "text":"adflex",
+                "children":[
+                    {
+                        "id":"3",
+                        "text":"1B1237881E5059E2224DFCB1BB0F0CBE964B83483B8A2F613184455FB4815321.png"
+                    },
+                    {
+                        "id":"4",
+                        "text":"44CA0F5D62A496E0F64186BEAC51199BDE16933A39D228F62D55E633603C8997.png"
+                    },
+                    {
+                        "id":"5",
+                        "text":"492D089BEB7E33915FF6A40667E53ED60562FEDBFF86606034C973A4F910D08C.png"
+                    },
+                    {
+                        "id":"6",
+                        "text":"515F135D0F86DB7081DB058BC201252A1B4B0774FEC8C2F98430330BBD5B4132.png"
+                    },
+                    {
+                        "id":"7",
+                        "text":"72DC5818E19EF6F7F51952968DE3F6CECA660B86A841383B94B8B8D9E7ABF319.png"
+                    },
+                    {
+                        "id":"8",
+                        "text":"7D4A7085F664230F20E4041A725867F0683EB54D4054FF150F2090612514A307.png"
+                    },
+                    {
+                        "id":"9",
+                        "text":"960E971B9CE8508211C250FD8129CC28E23FD522A8CCF7DDC05DCB98C2522E5A.png"
+                    },
+                    {
+                        "id":"10",
+                        "text":"9EF8C0890ED2F9E79F08B306548CCB21D17B2D1A199B18722C3D96D15F7E662F.png"
+                    },
+                    {
+                        "id":"11",
+                        "text":"9FDE6DA0208B58FB3292BDBAE6554A912A561F28F1DC4358FCD40860BF1867F6.png"
+                    },
+                    {
+                        "id":"12",
+                        "text":"AF9B95282E87055982F9BCFA643E266E7C6E65B17649EDD6259699E0C9289D40.png"
+                    },
+                    {
+                        "id":"13",
+                        "text":"C4ACB7C2EA8BBB5A080259683ED0CB2D874B7E5E0CA7D550B5BAFE9A7B3149B1.png"
+                    },
+                    {
+                        "id":"14",
+                        "text":"C4F85EC3CAC177B1552C2AC69688383B1A486CC2D9A214CAF0D28E776025AD99.png"
+                    },
+                    {
+                        "id":"15",
+                        "text":"DAA29F84C09FEBE5181301D4C1D7A53BBCD7BB7DCFB7EE093C624695A4677694.png"
+                    },
+                    {
+                        "id":"16",
+                        "text":"E366C3C087478635412455851E294B7BB90E63F02FFDCECE84B7810D4D87E852.png"
+                    }
+                ]
+            }
+        ]
+    }
+
+];

@@ -9,22 +9,56 @@
     -o-background-size: cover !important;
     background-size: cover !important; }
 
-.masthead #quote-container {
-    background-color: white;
+.e-input-group {
+    margin-bottom: 0px!important;
+
 }
 
-.input {
-    height: 50px;
+select {
+    height: 40px!important;
+    padding-left:20px;
+
 }
 
+.card .toggle-btn {
+    margin-bottom:30px;
+}
 
+.mat-button-toggle-group {
+    margin: 20px;
+}
+input {
+    height: 40px!important;
+
+}
+.card img {
+    margin-bottom:30px;
+}
+.e-ddt-icon {
+    padding-right: 20px !important;
+}
 .card {
     background: #fff;
     display: inline-block;
     margin: 1rem;
     position: relative;
-    width: 500px;
+    width: 600px;
+    padding: 50px;
 }
+
+.card p {
+    font-size: 15px;
+    color: gray;
+    text-align:left;
+    line-height: 1.4rem;
+}
+
+.card h1 {
+    font-size: 70px;
+    color: #737373;
+    margin: 20px;
+}
+
 .card-5 {
     box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
 }
@@ -49,4 +83,20 @@
 
 .fade.ng-hide {
     opacity: 0;
+}
+
+.search-btn {
+    border: 0px !important;
+    outline: none;
+}
+
+.search-btn:hover {
+    background-color: white!important;
+    color: #6c757d!important;
+}
+
+.search-container {
+    border-style: solid;
+    border-color: #6c757d;
+    border-width: 1px;
 }

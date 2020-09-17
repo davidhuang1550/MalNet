@@ -9,6 +9,22 @@
     text-align: center;
 }
 
+.download-p {
+    text-align: left!important;
+}
+
+.lock {
+    text-align: center;
+}
+
+.vertical {
+    border-left: 3px solid white;
+    height: 60%;
+    position:absolute;
+    top: 20%;
+    left: 50%;
+}
+
 .downloads-content h1 {
     padding-bottom: 20px;
 }
@@ -20,7 +36,22 @@
     color: white;
 }
 
-.downloads-content .fa-dropbox:hover {
+.downloads-content .fa-project-diagram:hover {
     color: #838383;
     cursor: pointer;
+}
+
+.downloads-content .fa-file-contract:hover {
+    color: #838383;
+    cursor: pointer;
+}
+
+.downloads-content .row p {
+    color:white;
+    padding-top:20px;
+}
+
+.downloads-content .row h3 {
+    color:white;
+    padding: 20px;
 }

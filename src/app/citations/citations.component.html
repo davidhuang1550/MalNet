@@ -1,0 +1,27 @@
+<hr>
+<section id="Citation">
+<h2 class="citations-header">Publications</h2>
+<div class="container">
+        <div class="citation-content"  *ngFor="let citation of citations">
+                <p class="title"><b>{{citation.title}}</b></p>
+                <div >
+                        <p class="display-in" *ngFor="let person of citation.person">
+                                <a href="{{person.url}}">{{person.name}}</a>, &nbsp;
+                        </p>
+                </div>
+
+                <p class="dark-grey"><i>{{citation.description}}</i></p>
+                <div class="links">
+                   <p class="display-in" *ngIf="citation.project !== ''"><i class="fa fa-link"></i> <a href="{{citation.project}}"> Project</a></p> &nbsp;
+                   <p class="display-in" *ngIf="citation.demo !== ''"><i class="fa fa-play"></i>  <a href="{{citation.project}}"> Demo</a></p> &nbsp;
+                   <p class="display-in" *ngIf="citation.pdf !== ''"><i class="fas fa-file-pdf"></i>  <a href="{{citation.project}}"> PDF</a></p> &nbsp;
+                   <p class="display-in" *ngIf="citation.video !== ''"><i class="fa fa-file-video-o"></i>  <a href="{{citation.project}}"> Video</a></p> &nbsp;
+                   <p class="display-in" *ngIf="citation.code !== ''"><i class="fas fa-code"></i>  <a href="{{citation.project}}"> Code</a></p> &nbsp;
+                   <p class="display-in" *ngIf="citation.bibtex !== ''"><i class="fa fa-book"></i>  <a href="{{citation.project}}"> BibTeX</a></p> &nbsp;
+                   <p class="display-in" *ngIf="citation.other !== ''">{{citation.other}}</p> &nbsp;
+
+
+                </div>
+        </div>
+</div>
+</section>
