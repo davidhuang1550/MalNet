@@ -1,11 +1,13 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {animate, style, transition, trigger} from '@angular/animations';
-import {PARTICLES, PARTICLES_VALUES} from '../constants/configuration';
 import {Router} from '@angular/router';
 import {VIRUS_IMAGE} from '../constants/virus.image';
 import {Select2OptionData} from 'ng-select2';
 import { Options } from 'select2';
 import {VIRUS_GRAPH} from '../constants/virus.graph';
+import {LoaderConfigService} from '../service/loader-config-service';
+import {ParticlesComponent} from 'angular-particle';
+import {PARTICLES, PARTICLES_VALUES} from '../constants/configuration';
 
 @Component({
   selector: 'app-home-page',
@@ -21,7 +23,6 @@ import {VIRUS_GRAPH} from '../constants/virus.graph';
   ]
 })
 export class HomePageComponent implements OnInit {
-
   myStyle: object = {};
   myParams: object = {};
   width: number = 100;
@@ -29,6 +30,8 @@ export class HomePageComponent implements OnInit {
   toggleBtn: string = 'Graph';
   //binding data source through fields property
   public exampleData: Array<Select2OptionData>;
+
+  homeVerb: string;
 
   graphData = VIRUS_GRAPH.map(this.mapVirus);
   imageData = VIRUS_IMAGE.map(this.mapVirus);
@@ -38,11 +41,17 @@ export class HomePageComponent implements OnInit {
    * asynchronous task will begin to change the qoute and the trait within
    * the specified interval defined.
    */
-  ngOnInit() {
+  async ngOnInit() {
     let position = 1;
-    this.myStyle = PARTICLES_VALUES;
     this.myParams = PARTICLES;
+    this.myStyle = PARTICLES_VALUES;
     this.exampleData = this.graphData;
+
+    this.loaderConfigService
+        .fetchHome()
+        .then(result => {
+          this.homeVerb = result['home-verb'];
+        });
   }
 
   mapVirus(val) {
@@ -60,8 +69,8 @@ export class HomePageComponent implements OnInit {
   }
 
 
-  constructor(private router: Router) {
-  }
+  constructor(private readonly router: Router,
+              private readonly loaderConfigService: LoaderConfigService) {}
 
   toggleBtnAction(value) {
     if (value === 'Graph') {

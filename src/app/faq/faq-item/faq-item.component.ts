@@ -22,7 +22,6 @@ export class FaqItemComponent implements OnInit {
 
   toggle() {
     this.opened = !this.opened;
-    console.log(this.opened);
   }
 
 }

@@ -6,8 +6,7 @@
                     <div class="card card-5">
                         <div>
                             <img width="420px" src="../../assets/logo.png"/>
-                            <p>MalNet is a hierarchical image and graph database designed to assist machine learning and security researchers in developing methods to detect malicious software.
-                                We release over 1,200,000 images and graphs spanning across 696 families and 47 types of malware, organized according to the Euphony Hierarchy. Click <a href="https://androzoo.uni.lu/labels">here</a> to learn more about MalNet.</p>
+                            <p [innerHTML]="homeVerb"></p>
                         </div>
                         <div id="quote-container">
                             <!--<ejs-dropdowntree (select)="select($event)" id='dropdowntree' [fields]='fields' placeholder='Search Malnet...'></ejs-dropdowntree>-->
@@ -30,7 +29,7 @@
                 </div>
             </div>
         </div>
-        <particles [params]="myParams" [style]="myStyle" [width]="width" [height]="height"></particles>
+        <particles #particlesComponent [params]="myParams" [style]="myStyle" [width]="width" [height]="height"></particles>
 
     </div>
 

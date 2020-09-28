@@ -3,28 +3,12 @@
     <div class="row description-body align-content-center">
         <h2 class="description-header">About Malnet</h2>
     </div>
-    <div class="row description-body align-content-center">
+    <div class="row description-body align-content-center" *ngFor="let aboutItem of about">
         <div class="col-md-3 img-p">
-            <img src="../../assets/Android.png" width="170px" />
+            <img src="{{aboutItem['image-url']}}" [ngStyle]="aboutItem['style']" />
         </div>
         <div class="col-md-9">
-            <p class="description-text"><b>Android malware on the rise</b> as smartphone popularity has surged, Android devices have become the most common target for malware infection, accounting for 47.15% of all device infections in 2017. In the same year, 2 billion devices were running Android with estimated infection rates of 0.31% per month. This results in a staggering 6 million Android device infections each month!</p>
-        </div>
-    </div>
-    <div class="row description-body align-content-center">
-        <div class="col-md-3 img-p" >
-            <img class="img-c" src="../../assets/Detect.png" width="170px" />
-        </div>
-        <div class="col-md-9">
-            <p class="description-text"><b>Polymorphic nature of malware makes detection hard</b>: Unfortunately, a large majority of newly identified malware is polymorphic in nature, meaning that subtle source code changes result in entirely new variants of the malware. Cybercriminals frequently take advantage of this to evade signature-based detection, which is the predominant form of malware detection.</p>
-        </div>
-    </div>
-    <div class="row description-body align-content-center">
-        <div class="col-md-3 img-p">
-            <img src="../../assets/Download.png" class="img-c" width="170px" />
-        </div>
-        <div class="col-md-9">
-            <p class="description-text"><b>To help combat malware we developed MalNet</b>: a large-scale dataset composed of both function call graphs (FCGs) and bytecode images extracted from over 1.2 million Android APKs. While hash-based techniques are vulnerable to the polymorphic nature of malware, graph and image-based representations have been shown to be much more robust. Our goal is to support the research community by providing a standardized dataset to benchmark new malware detection techniques.</p>
+            <p class="description-text" [innerHTML]="aboutItem['text']"></p>
         </div>
     </div>
  </div>

@@ -13,7 +13,9 @@
 .dark-grey {
     color: grey;
 }
-
+.mat-tab-body-content {
+    overflow: hidden!important;
+}
 .color-white {
     color: white;
 }
@@ -36,11 +38,49 @@
     text-align:left!important;
 }
 
+.modal-content {
+    width: 700px!important;
+    height: 500px!important;
+}
+
+.modal .modal-dialog {
+    width: 700px!important;
+    height: 500px!important;
+}
+.e-hover {
+    background-color: #323232!important;
+
+}
 .tool-tip-custom .tooltip-inner {
     background-color: #2E3434!important;
 }
 .select2-container--default .select2-selection--single {
     border: 0px!important;
+}
+.modal {
+    text-align: center;
+    padding: 0!important;
+}
+.e-treeview .e-list-item.e-hover > .e-fullrow {
+    border-color: #323232!important;
+}
+.e-text-content {
+    text-align: left!important;
+}
+.modal::before {
+    content: '';
+    display: inline-block;
+    height: 100%;
+    vertical-align: middle;
+}
+.mat-tab-label  {
+    color: white!important;
+}
+
+.modal-dialog {
+    display: inline-block;
+    text-align: left;
+    vertical-align: middle;
 }
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

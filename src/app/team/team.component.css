@@ -4,13 +4,17 @@
     position:absolute;
     left: 50%;
 }
-
+.team {
+    margin-bottom:100px;
+}
 .profile-card-1 {
     font-family: 'Open Sans', Arial, sans-serif;
     position: relative;
-    float: left;
     overflow: hidden;
-    width: 100%;
+    margin-left: auto!important;
+    margin-right: auto!important;
+    margin-bottom:100px;
+    max-width: 350px;
     color: white;
     text-align: center;
     height:368px;

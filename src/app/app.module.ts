@@ -22,8 +22,9 @@ import {TreeViewModule} from '@syncfusion/ej2-angular-navigations';
 import { FooterComponent } from './footer/footer.component';
 import {NgSelect2Module} from 'ng-select2';
 import {FormsModule} from '@angular/forms';
-import {MatButtonModule, MatButtonToggleModule, MatTabsModule, MatTooltipModule} from '@angular/material';
+import {MatButtonModule, MatButtonToggleModule, MatDialogModule, MatTabsModule, MatTooltipModule} from '@angular/material';
 import {HttpClientModule} from '@angular/common/http';
+import { DialogContentComponent } from './dialog-content/dialog-content.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,8 @@ import {HttpClientModule} from '@angular/common/http';
     FaqItemComponent,
     HomeComponent,
     ExploreComponent,
-    FooterComponent
+    FooterComponent,
+    DialogContentComponent
   ],
     imports: [
         BrowserModule,
@@ -56,8 +58,10 @@ import {HttpClientModule} from '@angular/common/http';
         HttpClientModule,
         MatTooltipModule,
         MatTabsModule,
+        MatDialogModule
     ],
   providers: [],
-  bootstrap: [AppComponent]
+  entryComponents: [DialogContentComponent],
+  bootstrap: [AppComponent],
 })
 export class AppModule { }

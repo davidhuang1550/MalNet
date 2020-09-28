@@ -1,14 +1,18 @@
 import {AfterViewInit, Component, OnInit, ViewChild} from '@angular/core';
 import {NestedTreeControl} from '@angular/cdk/tree';
-import {MatTreeNestedDataSource} from '@angular/material';
+import {MatDialog, MatTreeNestedDataSource} from '@angular/material';
 import {TreeViewComponent} from '@syncfusion/ej2-angular-navigations';
 import {Router} from '@angular/router';
 import {VIRUS_IMAGE} from '../constants/virus.image';
 import {MatTooltip} from '@angular/material/typings/tooltip';
-import {NgbTooltip} from '@ng-bootstrap/ng-bootstrap';
+import {ModalDismissReasons, NgbModal, NgbTooltip} from '@ng-bootstrap/ng-bootstrap';
 import ForceGraph from 'force-graph';
 import {EdgelistService} from '../service/edgelist.service';
 import {VIRUS_GRAPH} from '../constants/virus.graph';
+import * as CanvasJS from './canvasjs.min';
+import {NavService} from '../service/nav.service';
+import {DialogContentComponent} from '../dialog-content/dialog-content.component';
+import {LoaderConfigService} from '../service/loader-config-service';
 
 @Component({
   selector: 'app-explore',
@@ -34,7 +38,36 @@ export class ExploreComponent implements OnInit, AfterViewInit {
   public graphFields: any = { dataSource: this.graphData, id: 'id', text: 'text', child: 'children'};
   public parentNodes: any = [];
 
-  constructor(private router: Router, private edgeListService: EdgelistService) {
+  // summary stats
+  stats = {};
+  closeResult = '';
+
+  cachedStats = [];
+
+  // for graph
+  width;
+  // for graph
+  height;
+
+  constructor(private router: Router,
+              private edgeListService: EdgelistService,
+              private loaderConfigService: LoaderConfigService,
+              private modalService: NgbModal,
+              private navService: NavService,
+              public dialog: MatDialog
+              ) {
+    this.width = window.innerWidth;
+    this.height = window.innerHeight;
+
+    this.navService.changeNavColor.next(true);
+
+    this.loaderConfigService
+        .fetchStats()
+        .then(result => {
+          console.log(result);
+          this.cachedStats = result;
+        });
+
     if(this.router.getCurrentNavigation().extras.state !== undefined) {
       if(this.router.getCurrentNavigation().extras.state.type === 'Graph') {
         this.loadGraph(this.findNode(this.router.getCurrentNavigation().extras.state.id, this.graphData, '../../assets/graph/'));
@@ -65,9 +98,21 @@ export class ExploreComponent implements OnInit, AfterViewInit {
       }
     }
   }
+  openDialog(payload) {
+    const dialogRef = this.dialog.open(DialogContentComponent,
+        {
+          data: {
+            points: payload
+          },
+          autoFocus: false
+        });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(`Dialog result: ${result}`);
+    });
+  }
 
   public onNodeSelected(args, tree): string {
-    console.log("ERS");
     this.parentNodes.push(args.node)
     this.findParentNodes(args.node);
     let fullpath = "";
@@ -92,15 +137,18 @@ export class ExploreComponent implements OnInit, AfterViewInit {
 
   public onNodeSelectedImage(args) {
     const val = this.onNodeSelected(args, this.tree);
-    if(val.endsWith('.png')) {
+    if(val.endsWith('.png') || val.endsWith('.jpg') || val.endsWith('.jpeg')) {
       this.image = '../../assets/image/' +  val;
     }
   }
 
   public onNodeSelectedGraph(args) {
-    const graph = '../../assets/graph/' +  this.onNodeSelected(args, this.treeGraph);
-    console.log(graph);
-    this.loadGraph(graph);
+    const path = this.onNodeSelected(args, this.treeGraph);
+    const graph = '../../assets/graph/' +  path;
+    if(path.endsWith('.json')) {
+      this.loadGraph(graph);
+      this.stats = this.cachedStats[path.split('/')[0]];
+    }
   }
 
   public loadGraph(fileName: string) {
@@ -115,18 +163,21 @@ export class ExploreComponent implements OnInit, AfterViewInit {
       ForceGraph()
       (document.getElementById('graph-container'))
           .linkDirectionalParticles(1)
-          .width(700)
-          .height(700)
-          .backgroundColor("#F5F5F5")
+          .height(this.height)
+          .width(this.width)
+          .zoom(1)
+          .backgroundColor("#4c4c4c")
+          .linkColor("#fff")
           .graphData(resultset);
     });
   }
 
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+  }
 
   ngAfterViewInit(): void {
-    this.imageTip.open();
+    /*this.imageTip.open();
     this.graphTip.open();
     this.dataTip.open();
     setTimeout( () => {
@@ -134,8 +185,8 @@ export class ExploreComponent implements OnInit, AfterViewInit {
       this.graphTip.close();
       this.dataTip.close();
 
-    }, 7000);
+    }, 7000);*/
     this.loadGraph('../../assets/3E49D863921A32E6CF3A894BCA97FFBF55E54A0E3205DB51EB0487266E8D4085.json');
-    this.dataTip.disableTooltip = true;
+    //this.dataTip.disableTooltip = true;
   }
 }

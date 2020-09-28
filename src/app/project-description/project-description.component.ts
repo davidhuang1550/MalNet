@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {LoaderConfigService} from '../service/loader-config-service';
 
 @Component({
   selector: 'app-project-description',
@@ -7,9 +8,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProjectDescriptionComponent implements OnInit {
 
-  constructor() { }
+  about: [any];
+  constructor(private readonly loaderConfigService: LoaderConfigService) { }
 
   ngOnInit() {
+    this.loaderConfigService
+        .fetchAbout()
+        .then(result => {
+          this.about = result;
+        });
   }
 
 }

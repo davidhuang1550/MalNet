@@ -1,0 +1,9 @@
+.mat-dialog-content {
+    overflow: hidden!important;
+}
+
+#chartContainer {
+    height: 500px;
+    width: 700px;
+    margin:25px;
+}

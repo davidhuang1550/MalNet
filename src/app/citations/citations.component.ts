@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {Constant} from '../constants/Constants';
+import {LoaderConfigService} from '../service/loader-config-service';
 
 @Component({
   selector: 'app-citations',
@@ -8,11 +8,15 @@ import {Constant} from '../constants/Constants';
 })
 export class CitationsComponent implements OnInit {
 
-  citations = Constant.CITATION_DATA;
-  constructor() { }
+  citations;
+  constructor(private readonly loaderConfigService: LoaderConfigService) { }
 
   ngOnInit() {
-    console.log(JSON.stringify(this.citations[0].person));
+    this.loaderConfigService
+        .fetchCitations()
+        .then(result => {
+          this.citations = result;
+        });
   }
 
 }

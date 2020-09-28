@@ -3,50 +3,22 @@
     <div class="row" >
         <h2 class="description-header">Research Team</h2>
     </div>
-    <div class="row">
-        <div class="col-md-1"></div>
-        <div class="col-md-4">
-            <div class="card profile-card-3 mat-raised-button">
-                <div class="card profile-card-1">
-                    <img src="../../assets/background-team.jpg" alt="profile-sample1" class="background"/>
-                    <img src="../../assets/Scott_Freitas.png" alt="profile-image" class="profile"/>
+    <div class="row team">
+                <div class="card profile-card-1 mat-raised-button" *ngFor="let member of teamMember">
+                    <img src="{{member['background-team']}}" alt="profile-sample1" class="background"/>
+                    <img src="{{member['person-image']}}" [ngStyle]="member['style']" alt="profile-image" class="profile"/>
                     <div class="card-content">
-                        <h2>Scott Freitas</h2>
-                        <small>ML PhD</small>
+                        <h2>{{member['name']}}</h2>
+                        <small>{{member['title']}}</small>
                             <div class="icon-block">
-                                <a href="#"><i class="fas fa-home"></i></a>
-                                <a href="#"><i class="fab fa-github"></i></a>
-                                <a href="#"><i class="fab fa-linkedin-in"></i></a>
-                                <a href="#"><i class="fas fa-graduation-cap"></i></a>
+                                <a href="{{member['home-link']}}"><i class="fas fa-home"></i></a>
+                                <a href="{{member['git-link']}}"><i class="fab fa-github"></i></a>
+                                <a href="{{member['linkedin-link']}}"><i class="fab fa-linkedin-in"></i></a>
+                                <a href="{{member['scholar-link']}}"><i class="fas fa-graduation-cap"></i></a>
                             </div>
                     </div>
                 </div>
-            </div>
-        </div>
-        <div class="col-md-2">
-            <div class = "vertical">
-            </div>
-        </div>
-        <div class="col-md-4">
-            <div class="card profile-card-3 mat-raised-button">
-                <div class="card profile-card-1">
-                    <img src="../../assets/background-team.jpg" alt="profile-sample1" class="background"/>
-                    <img width="100px" height="99px" src="../../assets/Duen_horng.jpg" alt="profile-image" class="profile"/>
-                    <div class="card-content">
-                        <h2>Duen Horng (Polo) Chau</h2>
-                        <small>Associate Prof</small>
-                        <div class="icon-block">
-                            <a href="#"><i class="fas fa-home"></i></a>
-                            <a href="#"><i class="fab fa-github"></i></a>
-                            <a href="#"><i class="fab fa-linkedin-in"></i></a>
-                            <a href="#"><i class="fas fa-graduation-cap"></i></a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-1"></div>
-
     </div>
+
 </div>
 </section>

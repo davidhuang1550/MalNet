@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {Constant} from '../constants/Constants';
+import {LoaderConfigService} from '../service/loader-config-service';
 
 @Component({
   selector: 'app-faq',
@@ -8,15 +8,16 @@ import {Constant} from '../constants/Constants';
 })
 export class FaqComponent implements OnInit {
 
-  private faq = Constant.FAQ;
+  private faq;
 
-  constructor() { }
+  constructor(private readonly loaderConfigService: LoaderConfigService) { }
 
   ngOnInit() {
-  }
-
-  toggle() {
-
+    this.loaderConfigService
+        .fetchFAQConfig()
+        .then(result => {
+          this.faq = result;
+        });
   }
 
 }

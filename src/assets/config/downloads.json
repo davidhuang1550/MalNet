@@ -1,0 +1,44 @@
+[
+  {
+    "list": [
+      {
+        "name" : "Graph Data",
+        "image-link": "https://www.dropbox.com/",
+        "image-url": "../../assets/node2.png",
+        "style": {
+          "width": "240px"
+        },
+        "text": "300GB of graph data. <b>1,262,024</b> unique function call graphs across 696 families and 47 types of malware."
+      },{
+        "name" : "Image Data",
+        "image-link": "https://www.dropbox.com/",
+        "image-url": "../../assets/binary.png",
+        "style": {
+          "width": "175px"
+        },
+        "text": "80GB of image data. <b>1,262,024</b> unique function call graphs across 696 families and 47 types of malware."
+      }
+    ]
+  },
+  {
+    "list": [
+      {
+        "name" : "Metadata",
+        "image-link": "https://www.dropbox.com/",
+        "image-url": "../../assets/database.png",
+        "style": {
+          "width": "120px"
+        },
+        "text": "Antivirus vendors label malicious software according to a variety of conventions, creating noisy labels. To address this challenging research problem,we release VirusTotal reports containing 70 antivirus labels for each file"
+      },{
+        "name" : "Image Data",
+        "image-link": "https://www.dropbox.com/",
+        "image-url": "../../assets/text.png",
+        "style": {
+          "width": "145px"
+        },
+        "text": "We provide three files containing a recommended data split to train, validate and test your models in a ratio of 70%, 10% and 20%, respectively."
+      }
+    ]
+  }
+]

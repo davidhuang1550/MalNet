@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {LoaderConfigService} from '../service/loader-config-service';
 
 @Component({
   selector: 'app-team',
@@ -7,9 +8,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TeamComponent implements OnInit {
 
-  constructor() { }
+  teamMember: [any];
+
+  constructor(private readonly loaderConfigService: LoaderConfigService) { }
 
   ngOnInit() {
+    this.loaderConfigService
+        .fetchTeam()
+        .then(result => {
+          this.teamMember = result;
+        });
   }
 
 }

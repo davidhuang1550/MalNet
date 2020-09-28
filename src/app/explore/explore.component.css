@@ -6,8 +6,20 @@
 }
 
 .padding-200 {
-    padding-bottom: 200px;
+    padding-bottom: 100px;
+    padding-left: 0px!important;
+    padding-right:0px!important;
 }
+
+.center {
+    margin-left:auto;
+    margin-right:auto;
+}
+.banner {
+    width: 100%;
+    padding-bottom: 30px;
+}
+
 .tab-content {
     width: 100%;
 }
@@ -15,9 +27,7 @@
     padding-top:200px;
 }
 .ejs-tree {
-    min-height:700px;
-    max-height:700px;
-    overflow: auto;
+    height: 100%;
 }
 
 .selected-img {
@@ -50,6 +60,90 @@
     color: gray;
     border-color:gray;
 }
-.e-treeview > .e-ul  {
-    overflow:auto !important;
+.e-treeview > .e-ul {
+    overflow: hidden!important;
+    white-space: nowrap!important;
+    text-overflow: ellipsis!important;
+}
+.nopadding {
+    padding: 0 !important;
+    margin: 0 !important;
+}
+
+#graph-container {
+    overflow: hidden!important;
+}
+
+#searchPanel {
+    z-index: 10;
+    position: absolute;
+    left: 0;
+    right: 0;
+    width: 350px;
+    height: 100%;
+    background-color: #191919;
+    color: white;
+    padding: 0;
+}
+
+#statsPanel {
+    z-index: 10;
+    position: absolute;
+    right: 0;
+    width: 350px;
+    height: 100%;
+    float: right;
+    background-color: transparent;
+    padding: 0;
+}
+
+.statsContainer {
+    padding-top:90px;
+}
+
+.statsContainer ul {
+    list-style-type: none;
+}
+
+.statsContainer ul li:hover {
+    cursor: pointer;
+}
+
+.statsItem {
+    width: 250px;
+    height: 150px;
+    margin:15px;
+    padding: 0px!important;
+}
+.select-panel {
+    padding-top:90px;
+}
+.e-treeview .e-list-text {
+    color: white;
+}
+
+.e-treeview .e-icon-collapsible, .e-treeview .e-icon-expandable {
+    color: #636366;
+}
+
+.e-treeview .e-text-content, .e-treeview .e-fullrow {
+    background-color: #323232;
+}
+
+.customTree {
+    background-color: #323232;
+}
+.container-img {
+    position: relative;
+    text-align: center;
+    color: white;
+}
+/* Centered text */
+.container-img .centered {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    color: black;
+    font-weight: bold;
+    transform: translate(-50%, -50%);
 }
