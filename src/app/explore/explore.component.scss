@@ -92,7 +92,7 @@
 }
 
 .hide {
-    visibility: hidden!important;
+    display: none!important;
 }
 .close-btn:hover {
     cursor:pointer;
@@ -101,12 +101,16 @@
 .close-burger:hover {
     cursor: pointer;
 }
-.row-content {
+.row-content h2 {
+    padding-left:30px;
 }
 #graph-container {
+    background: #182026;
     overflow: hidden!important;
 }
-
+.pt-button-group {
+    display: inline-flex;
+}
 .searchPanel {
     z-index: 10;
     position: absolute;
@@ -123,11 +127,22 @@
     box-shadow:         2px 1px 5px 0.1px #0f151a;  /* Opera 10.5, IE 9, Firefox 4+, Chrome 6+, iOS 5 */
 }
 
-
+.minimal-navbar-right {
+    position: absolute;
+    top: 0;
+    background: #1b2329;
+    right: 0;
+    z-index: 15;
+    box-shadow: 2px 1px 5px 0.1px black;
+    padding: 10px;
+}
 .close-burger {
     margin-left:auto; margin-right:auto;
 }
-
+.small-icon {
+    padding-left:10px;
+    padding-right:10px;
+}
 #statsPanel {
     z-index: 10;
     position: absolute;

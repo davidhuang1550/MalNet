@@ -1,15 +1,11 @@
-<nav class="navbar navbar-expand-lg  navbar-dark nav-explore-bg">
-    <a class="navbar-brand js-scroll-trigger" href="#frontPageContainer"><img width="40" height="40" src="../../assets/malware_symbol.png"/></a>
+<nav [ngClass]="expand ? '' : 'hide'" class="navbar navbar-expand-lg  navbar-dark nav-explore-bg">
+    <a class="navbar-brand js-scroll-trigger" href="#frontPageContainer"><img width="40" height="40" src="../../assets/malware_symbol_white.png"/></a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
-            <li class="nav-item">
-                <p class="nav-link dataset">{{textSelected}}</p>
-
-            </li>
             <li class="nav-item">
                 <a href="#About" class="nav-link js-scroll-trigger" >About</a>
             </li>
@@ -20,7 +16,7 @@
                 <a href="#Download" class="nav-link js-scroll-trigger" >Download</a>
             </li>
             <li class="nav-item">
-                <a href="#Faq" class="nav-link js-scroll-trigger" >Faq</a>
+                <a href="#Faq" class="nav-link js-scroll-trigger" >FAQ</a>
             </li>
             <li class="nav-item">
                 <a href="#Citation" class="nav-link js-scroll-trigger" >Publications</a>
@@ -30,18 +26,25 @@
             <i class="fas fa-question-circle fa-1x color-white expand"></i>
         </div>
         <div class="form-inline my-2 my-lg-0 padding-20">
-            <i class="fas fa-expand fa-1x color-white expand"></i>
+            <i class="fas fa-expand fa-1x color-white expand" (click)="toggleExpand()"></i>
         </div>
         <div class="form-inline my-2 my-lg-0 padding-20">
             <a href="#"><i class="fab fa-github fa-1x color-white"></i></a>
         </div>
     </div>
 </nav>
+<div [ngClass]="expand ? 'hide' : ''" class="minimal-navbar-right">
+        <i class="fas fa-question-circle fa-1x color-white expand small-icon"></i>
+        <i class="fas fa-expand fa-1x color-white expand small-icon" (click)="toggleExpand()"></i>
+        <a href="#"><i class="fab fa-github fa-1x color-white small-icon"></i></a>
+</div>
 <div [ngClass]="searchSize ? 'searchPanel': 'searchPanel-hide'" id="searchPanel">
     <div [ngClass]="searchSize ? 'select-panel': 'select-panel-hide'">
         <div class="container">
             <div class="row row-content">
-                <i [ngClass]="searchSize ? 'fa-caret-left close-btn' : 'fa-bars close-burger'" class="fas fa-2x" (click)="toggleSearchBar()" ></i>
+                <h2 [ngClass]="searchSize ? '' : 'hide'">Explore</h2>
+                <i tooltipClass="custom-tool-tip" placement="right" ngbTooltip="What a great tip!" [autoClose]="false"
+                   [ngClass]="searchSize ? 'fa-caret-left close-btn' : 'fa-bars close-burger'" class="fas fa-2x" (click)="toggleSearchBar()" ></i>
             </div>
         </div>
         <mat-tab-group  [ngClass]="searchSize ? '' : 'hide'" [selectedIndex]="position" animationDuration="10ms">

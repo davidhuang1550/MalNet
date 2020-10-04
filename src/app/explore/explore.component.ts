@@ -48,7 +48,7 @@ export class ExploreComponent implements OnInit, AfterViewInit {
   // for graph
   height;
 
-  textSelected: string;
+  expand = true;
 
   searchSize = true;
   constructor(private router: Router,
@@ -147,8 +147,6 @@ export class ExploreComponent implements OnInit, AfterViewInit {
   public onNodeSelectedGraph(args) {
     const path = this.onNodeSelected(args, this.treeGraph);
     const graph = '../../assets/graph/' +  path;
-    const textArr = path.split('/');
-    this.textSelected = textArr[textArr.length - 1];
     if(path.endsWith('.json')) {
       this.loadGraph(graph);
       this.stats = this.cachedStats[path.split('/')[0]];
@@ -184,6 +182,12 @@ export class ExploreComponent implements OnInit, AfterViewInit {
   toggleSearchBar() {
     this.searchSize = !this.searchSize;
   }
+
+  toggleExpand() {
+    this.expand = !this.expand;
+    this.searchSize = this.expand;
+  }
+
 
   ngAfterViewInit(): void {
     /*this.imageTip.open();
