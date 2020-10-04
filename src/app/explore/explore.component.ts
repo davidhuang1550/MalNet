@@ -9,7 +9,6 @@ import {ModalDismissReasons, NgbModal, NgbTooltip} from '@ng-bootstrap/ng-bootst
 import ForceGraph from 'force-graph';
 import {EdgelistService} from '../service/edgelist.service';
 import {VIRUS_GRAPH} from '../constants/virus.graph';
-import * as CanvasJS from './canvasjs.min';
 import {NavService} from '../service/nav.service';
 import {DialogContentComponent} from '../dialog-content/dialog-content.component';
 import {LoaderConfigService} from '../service/loader-config-service';
@@ -17,7 +16,7 @@ import {LoaderConfigService} from '../service/loader-config-service';
 @Component({
   selector: 'app-explore',
   templateUrl: './explore.component.html',
-  styleUrls: ['./explore.component.css']
+  styleUrls: ['./explore.component.scss']
 })
 export class ExploreComponent implements OnInit, AfterViewInit {
   @ViewChild("tree", {static: false})
@@ -49,6 +48,9 @@ export class ExploreComponent implements OnInit, AfterViewInit {
   // for graph
   height;
 
+  textSelected: string;
+
+  searchSize = true;
   constructor(private router: Router,
               private edgeListService: EdgelistService,
               private loaderConfigService: LoaderConfigService,
@@ -145,6 +147,8 @@ export class ExploreComponent implements OnInit, AfterViewInit {
   public onNodeSelectedGraph(args) {
     const path = this.onNodeSelected(args, this.treeGraph);
     const graph = '../../assets/graph/' +  path;
+    const textArr = path.split('/');
+    this.textSelected = textArr[textArr.length - 1];
     if(path.endsWith('.json')) {
       this.loadGraph(graph);
       this.stats = this.cachedStats[path.split('/')[0]];
@@ -162,18 +166,23 @@ export class ExploreComponent implements OnInit, AfterViewInit {
         }).then( resultset => {
       ForceGraph()
       (document.getElementById('graph-container'))
-          .linkDirectionalParticles(1)
           .height(this.height)
           .width(this.width)
           .zoom(1)
-          .backgroundColor("#4c4c4c")
-          .linkColor("#fff")
+          .linkWidth(.2)
+          .nodeRelSize(6)
+          .backgroundColor("#182026")
+          .linkColor(d => "#9c9a9a")
           .graphData(resultset);
     });
   }
 
 
   ngOnInit(): void {
+  }
+
+  toggleSearchBar() {
+    this.searchSize = !this.searchSize;
   }
 
   ngAfterViewInit(): void {

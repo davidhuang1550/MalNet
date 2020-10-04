@@ -55,35 +55,77 @@
     border-color:#00A1FF;
     background:white;
 }
-
+.expand:hover {
+    cursor: pointer;
+}
+.dataset {
+    margin:0px!important;
+}
 .popover-content button.btn-default {
     color: gray;
     border-color:gray;
 }
+
+.padding-20 {
+    padding-left:20px;
+    padding-right:20px;
+}
 .e-treeview > .e-ul {
-    overflow: hidden!important;
-    white-space: nowrap!important;
-    text-overflow: ellipsis!important;
+
+}
+
+.nav-explore-bg {
+    background: #1b2329;
+    position: fixed;
+    width: 100%;
+    z-index: 15;
+    box-shadow: 2px 1px 5px 0.1px black;
 }
 .nopadding {
     padding: 0 !important;
     margin: 0 !important;
 }
+.close-btn {
+    padding-right:30px;
+    padding-bottom: 20px;
+    margin-left:auto; margin-right:0;
+}
 
+.hide {
+    visibility: hidden!important;
+}
+.close-btn:hover {
+    cursor:pointer;
+}
+
+.close-burger:hover {
+    cursor: pointer;
+}
+.row-content {
+}
 #graph-container {
     overflow: hidden!important;
 }
 
-#searchPanel {
+.searchPanel {
     z-index: 10;
     position: absolute;
     left: 0;
     right: 0;
     width: 350px;
     height: 100%;
-    background-color: #191919;
+    background-color: #1b2329;
     color: white;
     padding: 0;
+    transition: 0.3s;
+    -webkit-box-shadow: 2px 1px 5px 0.1px #0f151a;  /* Safari 3-4, iOS 4.0.2 - 4.2, Android 2.3+ */
+    -moz-box-shadow:    2px 1px 5px 0.1px #0f151a;  /* Firefox 3.5 - 3.6 */
+    box-shadow:         2px 1px 5px 0.1px #0f151a;  /* Opera 10.5, IE 9, Firefox 4+, Chrome 6+, iOS 5 */
+}
+
+
+.close-burger {
+    margin-left:auto; margin-right:auto;
 }
 
 #statsPanel {
@@ -95,6 +137,7 @@
     float: right;
     background-color: transparent;
     padding: 0;
+
 }
 
 .statsContainer {
@@ -117,6 +160,10 @@
 }
 .select-panel {
     padding-top:90px;
+}
+
+.select-panel-hide {
+    padding-top:20px;
 }
 .e-treeview .e-list-text {
     color: white;

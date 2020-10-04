@@ -11,6 +11,7 @@ export class NavComponent implements OnInit {
   private _navbarOpen = false;
   private _navbarShrink = false;
   private _navBarCollapse = false;
+  private _navHidden: false;
   constructor(private navService: NavService) {
   }
 
@@ -30,7 +31,7 @@ export class NavComponent implements OnInit {
     });
 
     this.navService.changeNavColor.subscribe( color => {
-      this.navbarShrink = color;
+      this._navHidden = color;
     });
   }
 
@@ -59,4 +60,12 @@ export class NavComponent implements OnInit {
   set navBarCollapse(value: boolean) {
     this._navBarCollapse = value;
   }
+  get navHidden(): false {
+    return this._navHidden;
+  }
+
+  set navHidden(value: false) {
+    this._navHidden = value;
+  }
+
 }

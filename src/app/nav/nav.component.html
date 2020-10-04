@@ -1,33 +1,35 @@
 
-<nav class="navbar navbar-expand-sm navbar-light fixed-top" [ngClass]="(navBarCollapse) ? 'navbar-shrink' : ''" id="mainNav">
-    <div class="container">
-        <a class="navbar-brand js-scroll-trigger" href="#frontPageContainer" [ngClass]="(navbarShrink) ? 'white': ''"><img width="40" height="40" src="../../assets/malware_symbol.png"/></a>
-        <button  class="navbar-toggler navbar-toggler-right white" (click)="toggleNavbar()" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-            Menu
-            <i class="fa fa-bars"></i>
-        </button>
-        <div class="collapse navbar-collapse" [ngClass]="{ 'show': navbarOpen }" id="navbarResponsive">
-            <ul class="navbar-nav ml-auto">
-                <li class="nav-item">
-                    <a routerLink="/explore" class="nav-link js-scroll-trigger" [ngClass]="(navbarShrink) ? 'white': ''">Explore</a>
-                </li>
-                <li class="nav-item">
-                    <a href="#About" class="nav-link js-scroll-trigger" [ngClass]="(navbarShrink) ? 'white': ''">About</a>
-                </li>
-                <li class="nav-item">
-                    <a href="#Team" class="nav-link js-scroll-trigger" [ngClass]="(navbarShrink) ? 'white': ''">Team</a>
-                </li>
-                <li class="nav-item">
-                    <a href="#Download" class="nav-link js-scroll-trigger" [ngClass]="(navbarShrink) ? 'white': ''">Download</a>
-                </li>
-                <li class="nav-item">
-                    <a href="#Faq" class="nav-link js-scroll-trigger" [ngClass]="(navbarShrink) ? 'white': ''">Faq</a>
-                </li>
-                <li class="nav-item">
-                    <a href="#Citation" class="nav-link js-scroll-trigger" [ngClass]="(navbarShrink) ? 'white': ''">Publications</a>
-                </li>
+<div [ngClass]="(navHidden) ? 'navHidden' : ''">
+    <nav class="navbar navbar-expand-sm navbar-light fixed-top" [ngClass]="(navBarCollapse) ? 'navbar-shrink' : ''" id="mainNav">
+        <div class="container">
+            <a class="navbar-brand js-scroll-trigger" href="#frontPageContainer" [ngClass]="(navbarShrink) ? 'white': ''"><img width="40" height="40" src="../../assets/malware_symbol.png"/></a>
+            <button  class="navbar-toggler navbar-toggler-right white" (click)="toggleNavbar()" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                Menu
+                <i class="fa fa-bars"></i>
+            </button>
+            <div class="collapse navbar-collapse" [ngClass]="{ 'show': navbarOpen }" id="navbarResponsive">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a routerLink="/explore" class="nav-link js-scroll-trigger" [ngClass]="(navBarCollapse) ? 'white': ''">Explore</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#About" class="nav-link js-scroll-trigger" [ngClass]="(navBarCollapse) ? 'white': ''">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#Team" class="nav-link js-scroll-trigger" [ngClass]="(navBarCollapse) ? 'white': ''">Team</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#Download" class="nav-link js-scroll-trigger" [ngClass]="(navBarCollapse) ? 'white': ''">Download</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#Faq" class="nav-link js-scroll-trigger" [ngClass]="(navBarCollapse) ? 'white': ''">Faq</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#Citation" class="nav-link js-scroll-trigger" [ngClass]="(navBarCollapse) ? 'white': ''">Publications</a>
+                    </li>
 
-            </ul>
+                </ul>
+            </div>
         </div>
-    </div>
-</nav>
+    </nav>
+</div>

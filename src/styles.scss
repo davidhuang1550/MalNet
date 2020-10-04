@@ -63,6 +63,7 @@
 }
 .e-treeview .e-list-item.e-hover > .e-fullrow {
     border-color: #323232!important;
+    left: -20px!important;
 }
 .e-text-content {
     text-align: left!important;
@@ -76,7 +77,25 @@
 .mat-tab-label  {
     color: white!important;
 }
+.searchPanel-hide {
+    z-index: 10;
+    position: absolute;
+    left: 0;
+    right: 0;
+    width: 50px;
+    height: 70px;
+    background-color: #1b2329;
+    color: white;
+    margin-top: 90px;
+    transition: 0.3s;
+    mat-ink-bar {
+        display:none;
+    }
+    -webkit-box-shadow: 2px 1px 5px 0.1px #0f151a;  /* Safari 3-4, iOS 4.0.2 - 4.2, Android 2.3+ */
+    -moz-box-shadow:    2px 1px 5px 0.1px #0f151a;;  /* Firefox 3.5 - 3.6 */
+    box-shadow:         2px 1px 5px 0.1px #0f151a;  /* Opera 10.5, IE 9, Firefox 4+, Chrome 6+, iOS 5 */
 
+}
 .modal-dialog {
     display: inline-block;
     text-align: left;

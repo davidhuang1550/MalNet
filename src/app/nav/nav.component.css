@@ -36,7 +36,9 @@
 .white {
     color: white!important;
 }
-
+.navHidden {
+    display: none;
+}
 @media (min-width: 992px) {
     #mainNav {
         padding-top: 20px;
