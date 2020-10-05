@@ -5,7 +5,7 @@ import {TreeViewComponent} from '@syncfusion/ej2-angular-navigations';
 import {Router} from '@angular/router';
 import {VIRUS_IMAGE} from '../constants/virus.image';
 import {MatTooltip} from '@angular/material/typings/tooltip';
-import {ModalDismissReasons, NgbModal, NgbTooltip} from '@ng-bootstrap/ng-bootstrap';
+import {ModalDismissReasons, NgbModal, NgbPopover, NgbTooltip} from '@ng-bootstrap/ng-bootstrap';
 import ForceGraph from 'force-graph';
 import {EdgelistService} from '../service/edgelist.service';
 import {VIRUS_GRAPH} from '../constants/virus.graph';
@@ -25,9 +25,13 @@ export class ExploreComponent implements OnInit, AfterViewInit {
   @ViewChild("treeGraph", {static: false})
   public treeGraph: TreeViewComponent;
 
-  @ViewChild('imageTip', {static: false}) imageTip: NgbTooltip;
-  @ViewChild('graphTip', {static: false}) graphTip: NgbTooltip;
-  @ViewChild('datatip', {static: false}) dataTip: NgbTooltip;
+  @ViewChild('closeId', {static: false}) closeId: NgbPopover;
+  @ViewChild('helpId', {static: false}) helpId: NgbPopover;
+  @ViewChild('expandId', {static: false}) expandId: NgbPopover;
+  @ViewChild('graphId', {static: false}) graphId: NgbPopover;
+  @ViewChild('imageId', {static: false}) imageId: NgbPopover;
+
+  toolTips: [NgbPopover] = [];
 
   position = 0;
   data = VIRUS_IMAGE.filter(data => data.id !== "0");
@@ -49,7 +53,7 @@ export class ExploreComponent implements OnInit, AfterViewInit {
   height;
 
   expand = true;
-
+  toolTipPosition = 0;
   searchSize = true;
   constructor(private router: Router,
               private edgeListService: EdgelistService,
@@ -188,18 +192,33 @@ export class ExploreComponent implements OnInit, AfterViewInit {
     this.searchSize = this.expand;
   }
 
+  resetPopOver() {
+    this.toolTipPosition = 0;
+    this.toolTips[this.toolTipPosition].disablePopover = false;
+    this.toolTips[this.toolTipPosition].open();
+    this.toolTips.forEach( item => item.disablePopover = true);
+  }
 
+  close(pop:any) {
+    pop.close();
+    pop.disablePopover = true;
+  }
+  nextToolTip() {
+    this.toolTips[this.toolTipPosition].close();
+    this.toolTips[++this.toolTipPosition].disablePopover = false;
+    this.toolTips[this.toolTipPosition].open();
+    this.toolTips[this.toolTipPosition].disablePopover = true;
+  }
   ngAfterViewInit(): void {
-    /*this.imageTip.open();
-    this.graphTip.open();
-    this.dataTip.open();
-    setTimeout( () => {
-      this.imageTip.close();
-      this.graphTip.close();
-      this.dataTip.close();
+    this.toolTips.push(this.graphId);
+    //this.toolTips.push(this.data);
+    this.toolTips.push(this.closeId);
+    this.toolTips.push(this.helpId);
+    this.toolTips.push(this.expandId);
+    this.toolTips[0].open();
+    this.toolTipPosition = 0;
+    this.toolTips.forEach( item => item.disablePopover = true);
 
-    }, 7000);*/
     this.loadGraph('../../assets/3E49D863921A32E6CF3A894BCA97FFBF55E54A0E3205DB51EB0487266E8D4085.json');
-    //this.dataTip.disableTooltip = true;
   }
 }

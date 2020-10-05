@@ -23,10 +23,14 @@
             </li>
         </ul>
         <div class="form-inline my-2 my-lg-0 padding-20">
-            <i class="fas fa-question-circle fa-1x color-white expand"></i>
+            <i [ngbPopover]="popContentHelp"
+               [autoClose]="false" placement="bottom" #helpId="ngbPopover"
+               class="fas fa-question-circle fa-1x color-white expand" (click)="resetPopOver()"></i>
         </div>
         <div class="form-inline my-2 my-lg-0 padding-20">
-            <i class="fas fa-expand fa-1x color-white expand" (click)="toggleExpand()"></i>
+            <i [ngbPopover]="popContentExpand"
+               [autoClose]="false" placement="bottom" #expandId="ngbPopover"
+               class="fas fa-expand fa-1x color-white expand" (click)="toggleExpand()"></i>
         </div>
         <div class="form-inline my-2 my-lg-0 padding-20">
             <a href="#"><i class="fab fa-github fa-1x color-white"></i></a>
@@ -43,16 +47,20 @@
         <div class="container">
             <div class="row row-content">
                 <h2 [ngClass]="searchSize ? '' : 'hide'">Explore</h2>
-                <i [ngbPopover]="popContent"
-                   [autoClose]="false" placement="right" #p="ngbPopover"
+                <i [ngbPopover]="popContentClose"
+                   [autoClose]="false" placement="right" #closeId="ngbPopover"
                    [ngClass]="searchSize ? 'fa-caret-left close-btn' : 'fa-bars close-burger'" class="fas fa-2x" (click)="toggleSearchBar()" ></i>
             </div>
         </div>
-        <mat-tab-group  [ngClass]="searchSize ? '' : 'hide'" [selectedIndex]="position" animationDuration="10ms">
-            <mat-tab label="Graph" #graphTip="ngbTooltip" tooltipClass="tool-tip-custom" placement="top" ngbTooltip="Function Call Graphes">
+        <mat-tab-group  [ngbPopover]="popContentGraph"
+                        [autoClose]="false" placement="right" #graphId="ngbPopover"
+                        [ngClass]="searchSize ? '' : 'hide'" [selectedIndex]="position" animationDuration="10ms">
+            <mat-tab
+                     label="Graph">
                 <ejs-treeview  cssClass="customTree" #treeGraph (nodeSelected)="onNodeSelectedGraph($event)" class="ejs-tree" id="default"  [fields]='graphFields'></ejs-treeview>
             </mat-tab>
-            <mat-tab label="Image" #imageTip="ngbTooltip" tooltipClass="tool-tip-custom" placement="right" ngbTooltip="Image Data Graphs">
+            <mat-tab
+                     label="Image">
                 <ejs-treeview cssClass="customTree" #tree (nodeSelected)="onNodeSelectedImage($event)" class="ejs-tree" id="default"  [fields]='fields'></ejs-treeview>
             </mat-tab>
         </mat-tab-group>
@@ -71,9 +79,35 @@
     </div>
 </div>
 <div id="graph-container"></div>
-<ng-template #popContent>
-    Hello
-    <button>click</button>
+<ng-template #popContentClose>
+    <div class="minimize-tp">
+        <p>Click to minimize</p>
+        <button class="btn btn-primary" (click)="nextToolTip()">Next</button>
+    </div>
+</ng-template>
+<ng-template #popContentHelp>
+    <div class="minimize-tp">
+        <p>Click for help</p>
+        <button class="btn btn-primary" (click)="nextToolTip()">Next</button>
+    </div>
+</ng-template>
+<ng-template #popContentGraph>
+    <div class="minimize-tp">
+        <p>Graph and Image Data, Expand to explore</p>
+        <button class="btn btn-primary" (click)="nextToolTip()">Next</button>
+    </div>
+</ng-template>
+<ng-template #popContentImage>
+    <div class="minimize-tp">
+        <p>Image Data Expand to explore</p>
+        <button class="btn btn-primary" (click)="nextToolTip()">Next</button>
+    </div>
+</ng-template>
+<ng-template #popContentExpand>
+    <div class="minimize-tp">
+        <p>Click to expand view</p>
+        <button class="btn btn-primary" (click)="close(expandId)">Close</button>
+    </div>
 </ng-template>
 <!--                        <img class="selected-img " src='{{image}}'/>
 -->
