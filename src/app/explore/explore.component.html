@@ -43,7 +43,8 @@
         <div class="container">
             <div class="row row-content">
                 <h2 [ngClass]="searchSize ? '' : 'hide'">Explore</h2>
-                <i tooltipClass="custom-tool-tip" placement="right" ngbTooltip="What a great tip!" [autoClose]="false"
+                <i [ngbPopover]="popContent"
+                   [autoClose]="false" placement="right" #p="ngbPopover"
                    [ngClass]="searchSize ? 'fa-caret-left close-btn' : 'fa-bars close-burger'" class="fas fa-2x" (click)="toggleSearchBar()" ></i>
             </div>
         </div>
@@ -70,6 +71,9 @@
     </div>
 </div>
 <div id="graph-container"></div>
-
+<ng-template #popContent>
+    Hello
+    <button>click</button>
+</ng-template>
 <!--                        <img class="selected-img " src='{{image}}'/>
 -->
