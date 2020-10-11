@@ -5,7 +5,7 @@
     </div>
     <div class="row description-body align-content-center" *ngFor="let aboutItem of about">
         <div class="col-md-3 img-p">
-            <img src="{{aboutItem['image-url']}}" [ngStyle]="aboutItem['style']" />
+            <img class="about-img" src="{{aboutItem['image-url']}}" [ngStyle]="aboutItem['style']" />
         </div>
         <div class="col-md-9">
             <p class="description-text" [innerHTML]="aboutItem['text']"></p>

@@ -1,10 +1,18 @@
-<nav [ngClass]="expand ? '' : 'hide'" class="navbar navbar-expand-lg  navbar-dark nav-explore-bg">
+<div class="explore-container">
+    <nav [ngClass]="expand ? '' : 'hide'" class="navbar navbar-expand-lg  navbar-dark nav-explore-bg">
     <a class="navbar-brand js-scroll-trigger" href="#frontPageContainer"><img width="40" height="40" src="../../assets/malware_symbol_white.png"/></a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <i [ngbPopover]="popContentHelp"
+           [autoClose]="false" placement="bottom" #helpIdMobile="ngbPopover"
+           class="fas ham-nav-item-displayed fa-question-circle fa-1x color-white expand" (click)="resetPopOver()"></i>
+        <i [ngbPopover]="popContentExpand"
+           [autoClose]="false" placement="bottom" #expandIdMobile="ngbPopover"
+           class="fas ham-nav-item-displayed fa-expand fa-1x color-white expand" (click)="toggleExpand()"></i>
+        <a href="#"><i class="fab ham-nav-item-displayed fa-github fa-1x color-white"></i></a>
+    <button class="navbar-toggler" type="button" (click)="toggleNavbar()" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
 
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <div class="collapse navbar-collapse" [ngClass]="{ 'show': navbarOpen }" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item">
                 <a href="#About" class="nav-link js-scroll-trigger" >About</a>
@@ -22,17 +30,17 @@
                 <a href="#Citation" class="nav-link js-scroll-trigger" >Publications</a>
             </li>
         </ul>
-        <div class="form-inline my-2 my-lg-0 padding-20">
+        <div class="form-inline my-2 my-lg-0 padding-20 nav-item-displayed">
             <i [ngbPopover]="popContentHelp"
                [autoClose]="false" placement="bottom" #helpId="ngbPopover"
                class="fas fa-question-circle fa-1x color-white expand" (click)="resetPopOver()"></i>
         </div>
-        <div class="form-inline my-2 my-lg-0 padding-20">
+        <div class="form-inline my-2 my-lg-0 padding-20 nav-item-displayed">
             <i [ngbPopover]="popContentExpand"
                [autoClose]="false" placement="bottom" #expandId="ngbPopover"
                class="fas fa-expand fa-1x color-white expand" (click)="toggleExpand()"></i>
         </div>
-        <div class="form-inline my-2 my-lg-0 padding-20">
+        <div class="form-inline my-2 my-lg-0 padding-20 nav-item-displayed">
             <a href="#"><i class="fab fa-github fa-1x color-white"></i></a>
         </div>
     </div>
@@ -70,15 +78,16 @@
     <div class="statsContainer">
         <ul>
             <li *ngFor="let item of stats | keyvalue">
-                <div *ngIf="item.key === 'density' || item.key === 'edges' || item.key === 'entropy' || item.key === 'nodes'" class="container-img">
-                    <img src="../../assets/box.jpg" (click)="openDialog(item.value)" class="statsItem mat-raised-button"/>
-                    <div class="centered">{{item.key}}</div>
+                <div *ngIf="item.key === 'density' || item.key ==='Average Degree' ||item.key === 'edges' || item.key === 'entropy' || item.key === 'nodes'" class="container-img">
+                    <div>{{item.key.charAt(0).toUpperCase() + item.key.slice(1)}}</div>
+                    <img src="../../assets/preview.png" (click)="openDialog(item.value, item.key)" class="statsItem"/>
                 </div>
             </li>
         </ul>
     </div>
 </div>
-<div id="graph-container"></div>
+<div [ngClass]="isImage ? 'hide': ''" id="graph-container"></div>
+<img [ngClass]="isImage ? '': 'hide'" class="selected-img" src='{{image}}'/>
 <ng-template #popContentClose>
     <div class="minimize-tp">
         <p>Click to minimize</p>
@@ -97,17 +106,12 @@
         <button class="btn btn-primary" (click)="nextToolTip()">Next</button>
     </div>
 </ng-template>
-<ng-template #popContentImage>
-    <div class="minimize-tp">
-        <p>Image Data Expand to explore</p>
-        <button class="btn btn-primary" (click)="nextToolTip()">Next</button>
-    </div>
-</ng-template>
 <ng-template #popContentExpand>
     <div class="minimize-tp">
         <p>Click to expand view</p>
-        <button class="btn btn-primary" (click)="close(expandId)">Close</button>
+        <button class="btn btn-primary" (click)="close(expandId, expandIdMobile)">Close</button>
     </div>
 </ng-template>
+</div>
 <!--                        <img class="selected-img " src='{{image}}'/>
 -->

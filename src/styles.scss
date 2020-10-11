@@ -37,7 +37,9 @@
 .select2-container--default .select2-selection--single .select2-selection__rendered {
     text-align:left!important;
 }
-
+.mat-dialog-container {
+    background-color: #182026!important;
+}
 .modal-content {
     width: 700px!important;
     height: 500px!important;
@@ -101,6 +103,9 @@
     font-size: 125%;
     color:black
 }
+.hide {
+    display: none;
+}
 .custom-tool-tip .arrow::before {
     border-top-color: white;
 }
@@ -109,6 +114,9 @@
     display: inline-block;
     text-align: left;
     vertical-align: middle;
+}
+.mat-tab-label{
+    font-size: 16px !important;
 }
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

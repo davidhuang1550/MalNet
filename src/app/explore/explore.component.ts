@@ -1,17 +1,14 @@
 import {AfterViewInit, Component, OnInit, ViewChild} from '@angular/core';
-import {NestedTreeControl} from '@angular/cdk/tree';
-import {MatDialog, MatTreeNestedDataSource} from '@angular/material';
+import {MatDialog} from '@angular/material';
 import {TreeViewComponent} from '@syncfusion/ej2-angular-navigations';
 import {Router} from '@angular/router';
-import {VIRUS_IMAGE} from '../constants/virus.image';
-import {MatTooltip} from '@angular/material/typings/tooltip';
-import {ModalDismissReasons, NgbModal, NgbPopover, NgbTooltip} from '@ng-bootstrap/ng-bootstrap';
+import {NgbModal, NgbPopover} from '@ng-bootstrap/ng-bootstrap';
 import ForceGraph from 'force-graph';
 import {EdgelistService} from '../service/edgelist.service';
-import {VIRUS_GRAPH} from '../constants/virus.graph';
 import {NavService} from '../service/nav.service';
 import {DialogContentComponent} from '../dialog-content/dialog-content.component';
 import {LoaderConfigService} from '../service/loader-config-service';
+import {DataService} from "../service/data-service";
 
 @Component({
   selector: 'app-explore',
@@ -28,19 +25,21 @@ export class ExploreComponent implements OnInit, AfterViewInit {
   @ViewChild('closeId', {static: false}) closeId: NgbPopover;
   @ViewChild('helpId', {static: false}) helpId: NgbPopover;
   @ViewChild('expandId', {static: false}) expandId: NgbPopover;
+  @ViewChild('helpIdMobile', {static: false}) helpIdMobile: NgbPopover;
+  @ViewChild('expandIdMobile', {static: false}) expandIdMobile: NgbPopover;
   @ViewChild('graphId', {static: false}) graphId: NgbPopover;
-  @ViewChild('imageId', {static: false}) imageId: NgbPopover;
 
-  toolTips: [NgbPopover] = [];
+  toolTips: NgbPopover[] = [];
 
   position = 0;
-  data = VIRUS_IMAGE.filter(data => data.id !== "0");
-  graphData = VIRUS_GRAPH.filter(data => data.id !== "0");
+  data;
+  graphData;
   image = 'https://via.placeholder.com/700';
-  public fields: any = { dataSource: this.data, id: 'id', text: 'text', child: 'children' };
-  public graphFields: any = { dataSource: this.graphData, id: 'id', text: 'text', child: 'children'};
+  public fields;
+  public graphFields;
   public parentNodes: any = [];
 
+  private navbarOpen = false;
   // summary stats
   stats = {};
   closeResult = '';
@@ -52,37 +51,36 @@ export class ExploreComponent implements OnInit, AfterViewInit {
   // for graph
   height;
 
+  isImage = false;
+
+  selectedTitle = '';
+
   expand = true;
   toolTipPosition = 0;
   searchSize = true;
+  loadGraphInit = false;
+  loadGraphInitId;
   constructor(private router: Router,
               private edgeListService: EdgelistService,
               private loaderConfigService: LoaderConfigService,
               private modalService: NgbModal,
               private navService: NavService,
-              public dialog: MatDialog
+              public dialog: MatDialog,
+              private readonly dataService: DataService
               ) {
     this.width = window.innerWidth;
     this.height = window.innerHeight;
-
-    this.navService.changeNavColor.next(true);
-
-    this.loaderConfigService
-        .fetchStats()
-        .then(result => {
-          console.log(result);
-          this.cachedStats = result;
-        });
-
     if(this.router.getCurrentNavigation().extras.state !== undefined) {
       if(this.router.getCurrentNavigation().extras.state.type === 'Graph') {
-        this.loadGraph(this.findNode(this.router.getCurrentNavigation().extras.state.id, this.graphData, '../../assets/graph/'));
+        this.loadGraphInit = true;
         this.position = 0;
       } else {
-        this.image = this.findNode(this.router.getCurrentNavigation().extras.state.id, this.data, '../../assets/image/')
+        this.loadGraphInit = false;
         this.position = 1;
       }
+      this.loadGraphInitId = this.router.getCurrentNavigation().extras.state.id;
     }
+
   }
   
   findNode(id, node, path) {
@@ -104,11 +102,13 @@ export class ExploreComponent implements OnInit, AfterViewInit {
       }
     }
   }
-  openDialog(payload) {
+  openDialog(payload, name) {
     const dialogRef = this.dialog.open(DialogContentComponent,
         {
           data: {
-            points: payload
+            points: payload,
+            name: name,
+            title: this.selectedTitle
           },
           autoFocus: false
         });
@@ -145,6 +145,10 @@ export class ExploreComponent implements OnInit, AfterViewInit {
     const val = this.onNodeSelected(args, this.tree);
     if(val.endsWith('.png') || val.endsWith('.jpg') || val.endsWith('.jpeg')) {
       this.image = '../../assets/image/' +  val;
+      this.selectedTitle = val.split('/')[0];
+      const map = this.cachedStats[this.selectedTitle.toLowerCase()];
+      this.stats = {'entropy': map['entropy']};
+      this.isImage = true;
     }
   }
 
@@ -153,8 +157,15 @@ export class ExploreComponent implements OnInit, AfterViewInit {
     const graph = '../../assets/graph/' +  path;
     if(path.endsWith('.json')) {
       this.loadGraph(graph);
-      this.stats = this.cachedStats[path.split('/')[0]];
+      this.selectedTitle = path.split('/')[0];
+      const map = this.cachedStats[this.selectedTitle.toLowerCase()];
+      this.stats = {'edges': map['edges'], 'density': map['density'], 'Average Degree': map['Average Degree'], 'nodes': map['nodes']};
+      this.isImage = false;
     }
+  }
+
+  public toggleNavbar() {
+    this.navbarOpen = !this.navbarOpen;
   }
 
   public loadGraph(fileName: string) {
@@ -180,7 +191,29 @@ export class ExploreComponent implements OnInit, AfterViewInit {
   }
 
 
-  ngOnInit(): void {
+  async ngOnInit() {
+    this.data = await this.dataService.getImageData().then(async result => {
+      return result.filter(data => data.id !== "0")
+    });
+    this.graphData = await this.dataService.getGraphData().then(async result => {
+      return result.filter(data => data.id !== "0")
+    });
+
+    this.graphFields = { dataSource: this.graphData, id: 'id', text: 'text', child: 'children'};
+    this.fields = { dataSource: this.data, id: 'id', text: 'text', child: 'children'};
+    this.navService.changeNavColor.next(true);
+
+    this.loaderConfigService
+        .fetchStats()
+        .then(result => {
+          console.log(result);
+          this.cachedStats = result;
+        });
+    if(this.loadGraphInit) {
+      this.loadGraph(this.findNode(this.loadGraphInitId, this.graphData, '../../assets/graph/'));
+    } else {
+      this.image = this.findNode(this.loadGraphInitId, this.data, '../../assets/image/');
+    }
   }
 
   toggleSearchBar() {
@@ -190,6 +223,7 @@ export class ExploreComponent implements OnInit, AfterViewInit {
   toggleExpand() {
     this.expand = !this.expand;
     this.searchSize = this.expand;
+    return false;
   }
 
   resetPopOver() {
@@ -197,11 +231,14 @@ export class ExploreComponent implements OnInit, AfterViewInit {
     this.toolTips[this.toolTipPosition].disablePopover = false;
     this.toolTips[this.toolTipPosition].open();
     this.toolTips.forEach( item => item.disablePopover = true);
+    return false;
   }
 
-  close(pop:any) {
+  close(pop:any, popM:any) {
     pop.close();
     pop.disablePopover = true;
+    popM.close();
+    popM.disablePopover = true;
   }
   nextToolTip() {
     this.toolTips[this.toolTipPosition].close();
@@ -213,12 +250,19 @@ export class ExploreComponent implements OnInit, AfterViewInit {
     this.toolTips.push(this.graphId);
     //this.toolTips.push(this.data);
     this.toolTips.push(this.closeId);
-    this.toolTips.push(this.helpId);
-    this.toolTips.push(this.expandId);
-    this.toolTips[0].open();
+
+    if(window.innerWidth >= 992) {
+      this.toolTips.push(this.helpId);
+      this.toolTips.push(this.expandId);
+    } else {
+      this.toolTips.push(this.helpIdMobile);
+      this.toolTips.push(this.expandIdMobile);
+    }
+
+
     this.toolTipPosition = 0;
     this.toolTips.forEach( item => item.disablePopover = true);
 
-    this.loadGraph('../../assets/3E49D863921A32E6CF3A894BCA97FFBF55E54A0E3205DB51EB0487266E8D4085.json');
+    this.loadGraph('../../assets/preview-graph.json');
   }
 }

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {NavService} from "../service/nav.service";
 
 @Component({
   selector: 'app-footer',
@@ -7,9 +8,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FooterComponent implements OnInit {
 
-  constructor() { }
+  private _navHidden: false;
+  constructor(private navService: NavService) { }
 
   ngOnInit() {
+    this.navService.changeNavColor.subscribe( color => {
+      this._navHidden = color;
+    });
+  }
+  get navHidden(): false {
+    return this._navHidden;
   }
 
+  set navHidden(value: false) {
+    this._navHidden = value;
+  }
 }

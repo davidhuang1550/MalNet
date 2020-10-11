@@ -4,9 +4,9 @@
     </button>
 
 </mat-dialog-actions>
-<h2 mat-dialog-title>Addisplay</h2>
-<mat-dialog-content class="mat-typography">
-    <div id="chartContainer"></div>
+<h2 mat-dialog-title style="text-align: center">{{this.data['title']}}</h2>
+<mat-dialog-content class="mat-typography box-plot-size">
+    <plotly-plot [data]="graph.data" [layout]="graph.layout"></plotly-plot>
 </mat-dialog-content>
 
 

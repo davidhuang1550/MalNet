@@ -13,6 +13,7 @@ import {HttpClient} from '@angular/common/http';
     about = '../../assets/config/about.json';
     home = '../../assets/config/home.json';
     stats = '../../assets/config/stats.json';
+    particles = '../../assets/config/particles.json'
 
     constructor(private http: HttpClient) {
     }
@@ -54,5 +55,9 @@ import {HttpClient} from '@angular/common/http';
 
     fetchStats(): Promise<any> {
         return this.load(this.stats);
+    }
+
+    fetchParticles(): Promise<any> {
+        return this.load(this.particles);
     }
 }

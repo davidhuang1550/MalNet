@@ -25,7 +25,11 @@ import {FormsModule} from '@angular/forms';
 import {MatButtonModule, MatButtonToggleModule, MatDialogModule, MatTabsModule, MatTooltipModule} from '@angular/material';
 import {HttpClientModule} from '@angular/common/http';
 import { DialogContentComponent } from './dialog-content/dialog-content.component';
+import {CommonModule} from "@angular/common";
+import * as PlotlyJS from 'plotly.js/dist/plotly.js';
+import { PlotlyModule } from 'angular-plotly.js';
 
+PlotlyModule.plotlyjs = PlotlyJS;
 @NgModule({
   declarations: [
     AppComponent,
@@ -58,7 +62,9 @@ import { DialogContentComponent } from './dialog-content/dialog-content.componen
         HttpClientModule,
         MatTooltipModule,
         MatTabsModule,
-        MatDialogModule
+        MatDialogModule,
+        CommonModule,
+        PlotlyModule
     ],
   providers: [],
   entryComponents: [DialogContentComponent],

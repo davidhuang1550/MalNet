@@ -1,7 +1,7 @@
 
   {
     "addisplay" : {
-      "avg_deg": {
+      "Average Degree": {
         "kurtosis": 0.5303189395868784,
         "mean": 1.970136061755687,
         "minmax": [

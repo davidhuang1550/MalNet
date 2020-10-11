@@ -1,9 +1,39 @@
 .mat-dialog-content {
     overflow: hidden!important;
+    background-color: #182026;
 }
-
+.mat-dialog-title {
+    background-color: #182026;
+    color: white;
+}
 #chartContainer {
     height: 500px;
     width: 700px;
     margin:25px;
+}
+.chart-wrapper {
+    position: relative;
+}
+
+.close {
+    color:white;
+}
+
+.box-plot-size {
+    width: 700px!important;
+    height: 500px!important;
+}
+
+@media (max-width: 992px) {
+    .box-plot-size {
+        width: 500px!important;
+        height: 450px!important;
+    }
+}
+
+@media (max-width: 600px) {
+    .box-plot-size {
+        width: 300px!important;
+        height: 450px!important;
+    }
 }

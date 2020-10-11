@@ -1,13 +1,10 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {animate, style, transition, trigger} from '@angular/animations';
 import {Router} from '@angular/router';
-import {VIRUS_IMAGE} from '../constants/virus.image';
 import {Select2OptionData} from 'ng-select2';
-import { Options } from 'select2';
-import {VIRUS_GRAPH} from '../constants/virus.graph';
 import {LoaderConfigService} from '../service/loader-config-service';
-import {ParticlesComponent} from 'angular-particle';
 import {PARTICLES, PARTICLES_VALUES} from '../constants/configuration';
+import {DataService} from "../service/data-service";
 
 @Component({
   selector: 'app-home-page',
@@ -33,8 +30,8 @@ export class HomePageComponent implements OnInit {
 
   homeVerb: string;
 
-  graphData = VIRUS_GRAPH.map(this.mapVirus);
-  imageData = VIRUS_IMAGE.map(this.mapVirus);
+  graphData;
+  imageData;
 
   /**
    * this onit method will call the interval setting via timeout where an
@@ -45,6 +42,13 @@ export class HomePageComponent implements OnInit {
     let position = 1;
     this.myParams = PARTICLES;
     this.myStyle = PARTICLES_VALUES;
+
+    this.graphData = await this.dataService.getGraphData().then(async result => {
+      return result.map(this.mapVirus);
+    })
+    this.imageData = await this.dataService.getImageData().then(async result => {
+      return result.map(this.mapVirus);
+    });
     this.exampleData = this.graphData;
 
     this.loaderConfigService
@@ -70,7 +74,8 @@ export class HomePageComponent implements OnInit {
 
 
   constructor(private readonly router: Router,
-              private readonly loaderConfigService: LoaderConfigService) {}
+              private readonly loaderConfigService: LoaderConfigService,
+              private readonly dataService: DataService) {}
 
   toggleBtnAction(value) {
     if (value === 'Graph') {
