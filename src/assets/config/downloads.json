@@ -4,7 +4,7 @@
       {
         "name" : "Graph Data",
         "image-link": "https://www.dropbox.com/",
-        "image-url": "../../assets/node2.png",
+        "image-url": "assets/node2.png",
         "style": {
           "width": "240px"
         },
@@ -12,7 +12,7 @@
       },{
         "name" : "Image Data",
         "image-link": "https://www.dropbox.com/",
-        "image-url": "../../assets/binary.png",
+        "image-url": "assets/binary.png",
         "style": {
           "width": "175px"
         },
@@ -25,7 +25,7 @@
       {
         "name" : "Metadata",
         "image-link": "https://www.dropbox.com/",
-        "image-url": "../../assets/database.png",
+        "image-url": "assets/database.png",
         "style": {
           "width": "120px"
         },
@@ -33,7 +33,7 @@
       },{
         "name" : "Image Data",
         "image-link": "https://www.dropbox.com/",
-        "image-url": "../../assets/text.png",
+        "image-url": "assets/text.png",
         "style": {
           "width": "145px"
         },

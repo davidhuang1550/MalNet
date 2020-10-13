@@ -6,8 +6,8 @@ import {HttpClient} from "@angular/common/http";
 })
 export class DataService {
 
-    graphData = '../../assets/config/graph.json';
-    imageData = '../../assets/config/image.json';
+    graphData = 'assets/config/graph.json';
+    imageData = 'assets/config/image.json';
 
     graphDataObj: any[] = null;
 

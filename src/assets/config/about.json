@@ -1,20 +1,20 @@
 [
   {
-    "image-url": "../../assets/Android.png",
+    "image-url": "assets/Android.png",
     "style": {
       "width" : "170px"
     },
     "text": "<b>Android malware on the rise</b> as smartphone popularity has surged, Android devices have become the most common target for malware infection, accounting for 47.15% of all device infections in 2017. In the same year, 2 billion devices were running Android with estimated infection rates of 0.31% per month. This results in a staggering 6 million Android device infections each month!"
   },
   {
-    "image-url": "../../assets/Detect.png",
+    "image-url": "assets/Detect.png",
     "style": {
       "width" : "170px"
     },
     "text": "<b>Polymorphic nature of malware makes detection hard</b>: Unfortunately, a large majority of newly identified malware is polymorphic in nature, meaning that subtle source code changes result in entirely new variants of the malware. Cybercriminals frequently take advantage of this to evade signature-based detection, which is the predominant form of malware detection."
   },
   {
-    "image-url": "../../assets/Download.png",
+    "image-url": "assets/Download.png",
     "style": {
       "width" : "170px"
     },

@@ -144,7 +144,7 @@ export class ExploreComponent implements OnInit, AfterViewInit {
   public onNodeSelectedImage(args) {
     const val = this.onNodeSelected(args, this.tree);
     if(val.endsWith('.png') || val.endsWith('.jpg') || val.endsWith('.jpeg')) {
-      this.image = '../../assets/image/' +  val;
+      this.image = 'assets/image/' +  val;
       this.selectedTitle = val.split('/')[0];
       const map = this.cachedStats[this.selectedTitle.toLowerCase()];
       this.stats = {'entropy': map['entropy']};
@@ -154,7 +154,7 @@ export class ExploreComponent implements OnInit, AfterViewInit {
 
   public onNodeSelectedGraph(args) {
     const path = this.onNodeSelected(args, this.treeGraph);
-    const graph = '../../assets/graph/' +  path;
+    const graph = 'assets/graph/' +  path;
     if(path.endsWith('.json')) {
       this.loadGraph(graph);
       this.selectedTitle = path.split('/')[0];
@@ -210,9 +210,9 @@ export class ExploreComponent implements OnInit, AfterViewInit {
           this.cachedStats = result;
         });
     if(this.loadGraphInit) {
-      this.loadGraph(this.findNode(this.loadGraphInitId, this.graphData, '../../assets/graph/'));
+      this.loadGraph(this.findNode(this.loadGraphInitId, this.graphData, 'assets/graph/'));
     } else {
-      this.image = this.findNode(this.loadGraphInitId, this.data, '../../assets/image/');
+      this.image = this.findNode(this.loadGraphInitId, this.data, 'assets/image/');
     }
   }
 
@@ -263,6 +263,6 @@ export class ExploreComponent implements OnInit, AfterViewInit {
     this.toolTipPosition = 0;
     this.toolTips.forEach( item => item.disablePopover = true);
 
-    this.loadGraph('../../assets/preview-graph.json');
+    this.loadGraph('assets/preview-graph.json');
   }
 }

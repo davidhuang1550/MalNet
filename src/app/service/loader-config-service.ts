@@ -6,14 +6,14 @@ import {HttpClient} from '@angular/common/http';
     providedIn: 'root'
 })export class LoaderConfigService {
 
-    citations = '../../assets/config/citations.json';
-    downloads = '../../assets/config/downloads.json';
-    faq = '../../assets/config/faq.json';
-    team = '../../assets/config/team.json';
-    about = '../../assets/config/about.json';
-    home = '../../assets/config/home.json';
-    stats = '../../assets/config/stats.json';
-    particles = '../../assets/config/particles.json'
+    citations = 'assets/config/citations.json';
+    downloads = 'assets/config/downloads.json';
+    faq = 'assets/config/faq.json';
+    team = 'assets/config/team.json';
+    about = 'assets/config/about.json';
+    home = 'assets/config/home.json';
+    stats = 'assets/config/stats.json';
+    particles = 'assets/config/particles.json'
 
     constructor(private http: HttpClient) {
     }

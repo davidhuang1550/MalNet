@@ -1,7 +1,7 @@
 [
   {
-    "background-team": "../../assets/background-team.jpg",
-    "person-image": "../../assets/Scott_Freitas.png",
+    "background-team": "assets/background-team.jpg",
+    "person-image": "assets/Scott_Freitas.png",
     "name": "Scott Freitas",
     "title": "ML PhD",
     "style": {
@@ -12,8 +12,8 @@
     "scholar-link": "https://www.google.ca"
   },
   {
-    "background-team": "../../assets/background-team.jpg",
-    "person-image": "../../assets/Duen_horng.jpg",
+    "background-team": "assets/background-team.jpg",
+    "person-image": "assets/Duen_horng.jpg",
     "name": "Duen Horng (Polo) Chau",
     "style": {
       "height": "99px",
