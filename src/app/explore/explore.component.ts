@@ -39,7 +39,7 @@ export class ExploreComponent implements OnInit, AfterViewInit {
   public graphFields;
   public parentNodes: any = [];
 
-  private navbarOpen = false;
+  public navbarOpen = false;
   // summary stats
   stats = {};
   closeResult = '';

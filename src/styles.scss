@@ -50,7 +50,7 @@
     height: 500px!important;
 }
 .e-hover {
-    background-color: #323232!important;
+    background-color: #232e36!important;
 
 }
 .tool-tip-custom .tooltip-inner {
@@ -59,13 +59,24 @@
 .select2-container--default .select2-selection--single {
     border: 0px!important;
 }
+.e-treeview .e-list-item.e-active.e-hover > .e-fullrow {
+    background-color: #232e36!important;
+}
+.e-treeview .e-list-item.e-active > .e-fullrow {
+    background-color: #232e36;
+    border-color: #232e36;
+}
 .modal {
     text-align: center;
     padding: 0!important;
 }
 .e-treeview .e-list-item.e-hover > .e-fullrow {
-    border-color: #323232!important;
+    border-color: #232e36!important;
+    background-color: #232e36!important;
     left: -20px!important;
+}
+.e-treeview .e-list-item.e-hover > .e-text-content .e-list-text {
+    color: #5c7d94!important;
 }
 .e-text-content {
     text-align: left!important;
@@ -75,6 +86,9 @@
     display: inline-block;
     height: 100%;
     vertical-align: middle;
+}
+.mat-tab-label-active {
+    background-color: #232e36!important;
 }
 .mat-tab-label  {
     color: white!important;
@@ -116,7 +130,7 @@
     vertical-align: middle;
 }
 .mat-tab-label{
-    font-size: 16px !important;
+    font-size: 14px !important;
 }
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

@@ -8,7 +8,7 @@ import {LoaderConfigService} from '../service/loader-config-service';
 })
 export class FaqComponent implements OnInit {
 
-  private faq;
+  public faq;
 
   constructor(private readonly loaderConfigService: LoaderConfigService) { }
 

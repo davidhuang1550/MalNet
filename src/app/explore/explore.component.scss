@@ -20,12 +20,20 @@
     padding-bottom: 30px;
 }
 
+.image-desc {
+    width:250px;
+    padding: 0px!important;
+    box-shadow: 2px 1px 5px 4px #0f151a;
+
+}
+
 .tab-content {
     width: 100%;
 }
 .explore-container {
     background-color: #182026;
     width:100vw;
+    overflow: hidden;
     height: 100vh;
 }
 .ejs-tree {
@@ -33,18 +41,27 @@
 }
 
 .selected-img {
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    width: 60%
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    max-width: 800px;
+    width: 100%;
+}
+.selected-img-300 {
+    padding-left:300px!important;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    max-width: 1024px;
+    width: 100%;
 }
 @media (max-width: 992px) {
-    .selected-img {
-        display: block;
-        margin-left: auto;
-        margin-right: auto;
-        width: 70%
-    }
     #statsPanel {
         display: none!important;
     }
@@ -126,7 +143,7 @@
 .close-burger:hover {
     cursor: pointer;
 }
-.row-content h2 {
+.row-content h4 {
     padding-left:30px;
 }
 #graph-container {
@@ -222,11 +239,11 @@
 }
 
 .e-treeview .e-text-content, .e-treeview .e-fullrow {
-    background-color: #323232;
+    background-color: #232e36;
 }
 
 .customTree {
-    background-color: #323232;
+    background-color: #232e36;
 }
 .container-img {
     position: relative;

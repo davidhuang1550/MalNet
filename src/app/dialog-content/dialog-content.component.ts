@@ -9,7 +9,7 @@ import {Plotly} from "angular-plotly.js/lib/plotly.interface";
 })
 export class DialogContentComponent implements OnInit, AfterViewInit {
 
-  public graph = {};
+  public graph;
 
   constructor(@Inject(MAT_DIALOG_DATA) public data: any, private readonly elementRef: ElementRef, private readonly ngZone: NgZone) { }
 
@@ -34,6 +34,7 @@ export class DialogContentComponent implements OnInit, AfterViewInit {
         font: {
           color: 'white'
         },
+        boxgap: 0.9,
         title: this.data["name"].toUpperCase()
       }
     }
