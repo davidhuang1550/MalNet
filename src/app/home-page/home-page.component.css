@@ -14,6 +14,9 @@
 
 }
 
+.logo-size {
+    width: 420px;
+}
 select {
     height: 40px!important;
     padding-left:20px;
@@ -75,12 +78,36 @@ input {
     .masthead .intro-body .brand-heading {
         font-size: 30px; }
     .masthead .intro-body .intro-text {
-        font-size: 15px; } }
+        font-size: 15px; }
+}
+@Media (max-width: 768px) {
+    .card {
+        background: #fff;
+        display: inline-block;
+        margin: 1rem;
+        position: relative;
+        width: 450px!important;
+    }
+    .logo-size {
+        width: 250px!important;
+    }
+}
+@Media (max-width: 480px) {
+    .card {
+        background: #fff;
+        display: inline-block;
+        margin: 1rem;
+        position: relative;
+        width: 350px!important;
+    }
+    .logo-size {
+        width: 200px!important;
+    }
+}
 .fade {
     transition: all linear 1000ms;
     opacity: 1;
 }
-
 .fade.ng-hide {
     opacity: 0;
 }

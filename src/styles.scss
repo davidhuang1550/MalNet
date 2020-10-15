@@ -117,6 +117,20 @@
     font-size: 125%;
     color:black
 }
+.select2-container {
+    width: 440px !important;
+}
+@Media (max-width: 768px) {
+    .select2-container {
+        width: 310px !important;
+    }
+}
+
+@Media (max-width: 480px) {
+    .select2-container {
+        width: 210px !important;
+    }
+}
 .hide {
     display: none;
 }
