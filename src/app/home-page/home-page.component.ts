@@ -43,7 +43,7 @@ export class HomePageComponent implements OnInit {
     this.myParams = PARTICLES;
     this.myStyle = PARTICLES_VALUES;
 
-    this.graphData = await this.dataService.getGraphData().then(async result => {
+    this.graphData  = await this.dataService.getGraphData().then(async result => {
       return result.map(this.mapVirus);
     })
     this.imageData = await this.dataService.getImageData().then(async result => {
@@ -85,9 +85,10 @@ export class HomePageComponent implements OnInit {
     }
   }
 
-  select($event) {
-    if( $event !== undefined)
-      this.router.navigate(['explore'], { state: { id: $event, type: this.toggleBtn } });
+  select(event) {
+    if( event !== undefined && event !== null) {
+      this.router.navigate(['explore'], {state: {id: event, type: this.toggleBtn}});
+    }
   }
 
 }

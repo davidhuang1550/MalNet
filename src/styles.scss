@@ -66,6 +66,9 @@
     background-color: #232e36;
     border-color: #232e36;
 }
+.e-treeview .e-list-item {
+    padding: 0px!important;
+}
 .modal {
     text-align: center;
     padding: 0!important;
@@ -129,6 +132,12 @@
 @media (max-width: 480px) {
     .select2-container {
         width: 210px !important;
+    }
+}
+
+@media (max-width: 360px) {
+    .select2-container {
+        width: 145px !important;
     }
 }
 .hide {

@@ -104,6 +104,19 @@ input {
         width: 200px!important;
     }
 }
+@media (max-width: 360px) {
+    .card {
+        background: #fff;
+        display: inline-block;
+        margin: 1rem;
+        padding:30px!important;
+        position: relative;
+        width: 250px!important;
+    }
+    .logo-size {
+        width: 150px!important;
+    }
+}
 .fade {
     transition: all linear 1000ms;
     opacity: 1;

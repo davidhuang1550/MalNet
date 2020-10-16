@@ -112,10 +112,6 @@
     padding-left:20px;
     padding-right:20px;
 }
-.e-treeview > .e-ul {
-
-}
-
 .nav-explore-bg {
     background: #1b2329;
     position: fixed;
@@ -233,17 +229,11 @@
 .e-treeview .e-list-text {
     color: white;
 }
-
+.e-treeview > .e-ul {
+    overflow-y: hidden ;
+}
 .e-treeview .e-icon-collapsible, .e-treeview .e-icon-expandable {
     color: #636366;
-}
-
-.e-treeview .e-text-content, .e-treeview .e-fullrow {
-    background-color: #232e36;
-}
-
-.customTree {
-    background-color: #232e36;
 }
 .container-img {
     position: relative;

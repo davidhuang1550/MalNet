@@ -54,12 +54,14 @@ export class ExploreComponent implements OnInit, AfterViewInit {
   isImage = false;
 
   selectedTitle = '';
-
+  initGraphImage;
   expand = true;
   toolTipPosition = 0;
   searchSize = true;
   loadGraphInit = false;
+  firstStats;
   loadGraphInitId;
+  referred = false;
   constructor(private router: Router,
               private edgeListService: EdgelistService,
               private loaderConfigService: LoaderConfigService,
@@ -71,6 +73,7 @@ export class ExploreComponent implements OnInit, AfterViewInit {
     this.width = window.innerWidth;
     this.height = window.innerHeight;
     if(this.router.getCurrentNavigation().extras.state !== undefined) {
+      this.referred = true;
       if(this.router.getCurrentNavigation().extras.state.type === 'Graph') {
         this.loadGraphInit = true;
         this.position = 0;
@@ -80,28 +83,38 @@ export class ExploreComponent implements OnInit, AfterViewInit {
       }
       this.loadGraphInitId = this.router.getCurrentNavigation().extras.state.id;
     }
-
   }
   
   findNode(id, node, path) {
     for(let x = 0; x < node.length; x++) {
       if(id === node[x]["id"]) {
         node[x]['expanded'] = true;
+        this.selectFirstNode(node);
         return path + node[x]['text'];
         break;
       }
 
       if(x !== node.length-1 && Number(id) < Number(node[x+1]["id"])) {
         node[x]['expanded'] = true;
-        this.findNode(id, node[x]["children"], path + node[x]['text'] + "/");
+        return this.findNode(id, node[x]["children"], path + node[x]['text'] + "/");
         break;
       } else if(x === node.length - 1 ) {
         node[x]['expanded'] = true;
-        this.findNode(id, node[x]["children"], path + node[x]['text'] + "/");
+        return this.findNode(id, node[x]["children"], path + node[x]['text'] + "/");
         break;
       }
     }
   }
+
+  selectFirstNode(node) {
+    if(node[0]["children"] !== undefined && node[0]["children"] !== null) {
+      this.selectFirstNode(node[0]["children"]);
+    } else {
+      node[0]['selected'] = true;
+      this.initGraphImage = node[0]['text'];
+    }
+  }
+
   openDialog(payload, name) {
     const dialogRef = this.dialog.open(DialogContentComponent,
         {
@@ -145,11 +158,22 @@ export class ExploreComponent implements OnInit, AfterViewInit {
     const val = this.onNodeSelected(args, this.tree);
     if(val.endsWith('.png') || val.endsWith('.jpg') || val.endsWith('.jpeg')) {
       this.image = 'assets/image/' +  val;
-      this.selectedTitle = val.split('/')[0];
-      const map = this.cachedStats[this.selectedTitle.toLowerCase()];
-      this.stats = {'entropy': map['entropy']};
-      this.isImage = true;
+      this.setImageStats(val);
     }
+  }
+
+  setImageStats(val) {
+    this.selectedTitle = val.split('/')[0];
+    const map = this.cachedStats[this.selectedTitle.toLowerCase()];
+    this.stats = {'entropy': map['entropy']};
+    this.isImage = true;
+  }
+
+  setGraphStats(path) {
+    this.selectedTitle = path.split('/')[0];
+    const map = this.cachedStats[this.selectedTitle.toLowerCase()];
+    this.stats = {'edges': map['edges'], 'density': map['density'], 'Average Degree': map['Average Degree'], 'nodes': map['nodes']};
+    this.isImage = false;
   }
 
   public onNodeSelectedGraph(args) {
@@ -157,10 +181,7 @@ export class ExploreComponent implements OnInit, AfterViewInit {
     const graph = 'assets/graph/' +  path;
     if(path.endsWith('.json')) {
       this.loadGraph(graph);
-      this.selectedTitle = path.split('/')[0];
-      const map = this.cachedStats[this.selectedTitle.toLowerCase()];
-      this.stats = {'edges': map['edges'], 'density': map['density'], 'Average Degree': map['Average Degree'], 'nodes': map['nodes']};
-      this.isImage = false;
+      this.setGraphStats(path);
     }
   }
 
@@ -203,17 +224,23 @@ export class ExploreComponent implements OnInit, AfterViewInit {
     this.fields = { dataSource: this.data, id: 'id', text: 'text', child: 'children'};
     this.navService.changeNavColor.next(true);
 
-    this.loaderConfigService
+    await this.loaderConfigService
         .fetchStats()
-        .then(result => {
-          console.log(result);
+        .then(async result => {
           this.cachedStats = result;
         });
-    if(this.loadGraphInit) {
-      this.loadGraph(this.findNode(this.loadGraphInitId, this.graphData, 'assets/graph/'));
-    } else {
-      this.image = this.findNode(this.loadGraphInitId, this.data, 'assets/image/');
-    }
+    if(this.referred)
+      if(this.loadGraphInit) {
+        const val = this.findNode(this.loadGraphInitId, this.graphData, 'assets/graph/');
+        this.loadGraph(val + '/' + this.initGraphImage);
+        this.firstStats = val.split("/")[2];
+        this.setGraphStats(this.firstStats);
+      } else {
+        const val= this.findNode(this.loadGraphInitId, this.data, 'assets/image/');
+        this.image = val  + '/' + this.initGraphImage;
+        this.firstStats = val.split("/")[2];
+        this.setImageStats(this.firstStats);
+      }
   }
 
   toggleSearchBar() {
@@ -258,11 +285,9 @@ export class ExploreComponent implements OnInit, AfterViewInit {
       this.toolTips.push(this.helpIdMobile);
       this.toolTips.push(this.expandIdMobile);
     }
-
-
     this.toolTipPosition = 0;
     this.toolTips.forEach( item => item.disablePopover = true);
 
-    this.loadGraph('assets/preview-graph.json');
+    //this.loadGraph('assets/preview-graph.json');
   }
 }

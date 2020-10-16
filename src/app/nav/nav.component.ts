@@ -12,7 +12,11 @@ export class NavComponent implements OnInit {
   private _navbarShrink = false;
   private _navBarCollapse = false;
   private _navHidden: false;
+  public blackBar = false;
   constructor(private navService: NavService) {
+    if(window.innerWidth <= 992) {
+      this.blackBar = true;
+    }
   }
 
   public toggleNavbar() {
