@@ -80,7 +80,7 @@ input {
     .masthead .intro-body .intro-text {
         font-size: 15px; }
 }
-@Media (max-width: 768px) {
+@media (max-width: 768px) {
     .card {
         background: #fff;
         display: inline-block;
@@ -92,7 +92,7 @@ input {
         width: 250px!important;
     }
 }
-@Media (max-width: 480px) {
+@media (max-width: 480px) {
     .card {
         background: #fff;
         display: inline-block;
