@@ -108,6 +108,7 @@ export class ExploreComponent implements OnInit, AfterViewInit {
 
   selectFirstNode(node) {
     if(node[0]["children"] !== undefined && node[0]["children"] !== null) {
+      node[0]['expanded'] = true;
       this.selectFirstNode(node[0]["children"]);
     } else {
       node[0]['selected'] = true;
@@ -211,6 +212,15 @@ export class ExploreComponent implements OnInit, AfterViewInit {
     });
   }
 
+  selectFirstNodeReturn(node, path) {
+    if(node[0]["children"] !== undefined && node[0]["children"] !== null) {
+      node[0]['expanded'] = true;
+      return this.selectFirstNodeReturn(node[0]["children"], path + node[0]['text'] + "/");
+    } else {
+      node[0]['selected'] = true;
+      return path + node[0]['text'];
+    }
+  }
 
   async ngOnInit() {
     this.data = await this.dataService.getImageData().then(async result => {
@@ -229,18 +239,27 @@ export class ExploreComponent implements OnInit, AfterViewInit {
         .then(async result => {
           this.cachedStats = result;
         });
-    if(this.referred)
-      if(this.loadGraphInit) {
+    if(this.referred) {
+      if (this.loadGraphInit) {
         const val = this.findNode(this.loadGraphInitId, this.graphData, 'assets/graph/');
         this.loadGraph(val + '/' + this.initGraphImage);
         this.firstStats = val.split("/")[2];
         this.setGraphStats(this.firstStats);
+        this.treeGraph.refresh();
       } else {
-        const val= this.findNode(this.loadGraphInitId, this.data, 'assets/image/');
-        this.image = val  + '/' + this.initGraphImage;
+        const val = this.findNode(this.loadGraphInitId, this.data, 'assets/image/');
+        this.image = val + '/' + this.initGraphImage;
         this.firstStats = val.split("/")[2];
         this.setImageStats(this.firstStats);
+        this.tree.refresh();
       }
+    } else {
+      const val = this.selectFirstNodeReturn(this.graphData, 'assets/graph/');
+      this.loadGraph(val);
+      this.firstStats = val.split("/")[2];
+      this.setGraphStats(this.firstStats);
+      this.treeGraph.refresh();
+    }
   }
 
   toggleSearchBar() {

@@ -1,0 +1,159 @@
+@import '../node_modules/@syncfusion/ej2-base/styles/material.css';
+@import '../node_modules/@syncfusion/ej2-buttons/styles/material.css';
+@import '../node_modules/@syncfusion/ej2-dropdowns/styles/material.css';
+@import '../node_modules/@syncfusion/ej2-navigations/styles/material.css';
+@import '../node_modules/@syncfusion/ej2-inputs/styles/material.css';
+@import '../node_modules/@syncfusion/ej2-popups/styles/material.css';
+@import '../node_modules/@syncfusion/ej2-lists/styles/material.css';
+@import '../node_modules/@syncfusion/ej2-angular-dropdowns/styles/material.css';
+@import "../node_modules/@syncfusion/ej2-base/styles/material.css";
+@import "../node_modules/@syncfusion/ej2-inputs/styles/material.css";
+@import "../node_modules/@syncfusion/ej2-buttons/styles/material.css";
+@import "../node_modules/bootstrap/dist/css/bootstrap.css";
+.dark-grey {
+    color: grey;
+}
+.mat-tab-body-content {
+    overflow: hidden!important;
+}
+.color-white {
+    color: white;
+}
+.select2-dropdown {
+    margin-top: -35px!important;
+}
+.select2-container .select2-selection--single {
+    height:38px !important;
+}
+.select2-container .select2-selection--single .select2-selection__rendered {
+    padding-top:5px!important;
+}
+
+.select2-container--default .select2-selection--single .select2-selection__arrow b {
+    border-color: white!important;
+    border-style: none!important;
+}
+
+.select2-container--default .select2-selection--single .select2-selection__rendered {
+    text-align:left!important;
+}
+.mat-dialog-container {
+    background-color: #182026!important;
+}
+.modal-content {
+    width: 700px!important;
+    height: 500px!important;
+}
+
+.modal .modal-dialog {
+    width: 700px!important;
+    height: 500px!important;
+}
+.e-hover {
+    background-color: #232e36!important;
+
+}
+.tool-tip-custom .tooltip-inner {
+    background-color: #2E3434!important;
+}
+.select2-container--default .select2-selection--single {
+    border: 0px!important;
+}
+.e-treeview .e-list-item.e-active.e-hover > .e-fullrow {
+    background-color: #232e36!important;
+}
+.e-treeview .e-list-item.e-active > .e-fullrow {
+    background-color: #232e36;
+    border-color: #232e36;
+}
+.e-treeview .e-list-item {
+    padding: 0px!important;
+}
+.modal {
+    text-align: center;
+    padding: 0!important;
+}
+.e-treeview .e-list-item.e-hover > .e-fullrow {
+    border-color: #232e36!important;
+    background-color: #232e36!important;
+    left: -20px!important;
+}
+.e-treeview .e-list-item.e-hover > .e-text-content .e-list-text {
+    color: #5c7d94!important;
+}
+.e-text-content {
+    text-align: left!important;
+}
+.modal::before {
+    content: '';
+    display: inline-block;
+    height: 100%;
+    vertical-align: middle;
+}
+.mat-tab-label-active {
+    background-color: #232e36!important;
+}
+.mat-tab-label  {
+    color: white!important;
+}
+.searchPanel-hide {
+    z-index: 10;
+    position: absolute;
+    left: 0;
+    right: 0;
+    width: 50px;
+    height: 70px;
+    background-color: #1b2329;
+    color: white;
+    margin-top: 90px;
+    transition: 0.3s;
+    mat-ink-bar {
+        display:none;
+    }
+    -webkit-box-shadow: 2px 1px 5px 0.1px #0f151a;  /* Safari 3-4, iOS 4.0.2 - 4.2, Android 2.3+ */
+    -moz-box-shadow:    2px 1px 5px 0.1px #0f151a;;  /* Firefox 3.5 - 3.6 */
+    box-shadow:         2px 1px 5px 0.1px #0f151a;  /* Opera 10.5, IE 9, Firefox 4+, Chrome 6+, iOS 5 */
+
+}
+.custom-tool-tip .tooltip-inner {
+    background-color: white;
+    font-size: 125%;
+    color:black
+}
+.select2-container {
+    width: 440px !important;
+}
+@media (max-width: 768px) {
+    .select2-container {
+        width: 310px !important;
+    }
+}
+
+@media (max-width: 480px) {
+    .select2-container {
+        width: 210px !important;
+    }
+}
+
+@media (max-width: 360px) {
+    .select2-container {
+        width: 145px !important;
+    }
+}
+.hide {
+    display: none;
+}
+.custom-tool-tip .arrow::before {
+    border-top-color: white;
+}
+
+.modal-dialog {
+    display: inline-block;
+    text-align: left;
+    vertical-align: middle;
+}
+.mat-tab-label{
+    font-size: 14px !important;
+}
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
