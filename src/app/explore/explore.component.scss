@@ -211,8 +211,8 @@
 }
 
 .statsItem {
-    width: 250px;
-    height: 150px;
+    width: 200px;
+    height: 125px;
     margin:15px;
     -webkit-box-shadow: 2px 1px 5px 0.1px #0f151a;  /* Safari 3-4, iOS 4.0.2 - 4.2, Android 2.3+ */
     -moz-box-shadow:    2px 1px 5px 0.1px #0f151a;  /* Firefox 3.5 - 3.6 */
@@ -220,9 +220,9 @@
     padding: 0px!important;
 }
 .select-panel {
+    height: 100%;
     padding-top:90px;
 }
-
 .select-panel-hide {
     padding-top:20px;
 }
@@ -248,4 +248,9 @@
     color: whitesmoke;
     font-weight: bold;
     transform: translate(-50%, -50%);
+}
+
+.customTree {
+    height: 100%;
+    overflow: auto;
 }

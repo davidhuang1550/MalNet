@@ -93,6 +93,9 @@
 .mat-tab-label-active {
     background-color: #232e36!important;
 }
+mat-tab{
+    height: 100vh !important;
+}
 .mat-tab-label  {
     color: white!important;
 }
@@ -122,6 +125,13 @@
 }
 .select2-container {
     width: 440px !important;
+}
+.mat-tab-group {
+    height: 90%;
+}
+.mat-tab-body-wrapper {
+    height: 90%;
+
 }
 @media (max-width: 768px) {
     .select2-container {

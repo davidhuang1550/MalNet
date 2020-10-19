@@ -9,6 +9,7 @@ import {NavService} from '../service/nav.service';
 import {DialogContentComponent} from '../dialog-content/dialog-content.component';
 import {LoaderConfigService} from '../service/loader-config-service';
 import {DataService} from "../service/data-service";
+import {KeyValue} from "@angular/common";
 
 @Component({
   selector: 'app-explore',
@@ -43,6 +44,11 @@ export class ExploreComponent implements OnInit, AfterViewInit {
   // summary stats
   stats = {};
   closeResult = '';
+
+  // Preserve original property order
+  originalOrder = (a: KeyValue<number,string>, b: KeyValue<number,string>): number => {
+    return 0;
+  }
 
   cachedStats = [];
 
@@ -165,15 +171,15 @@ export class ExploreComponent implements OnInit, AfterViewInit {
 
   setImageStats(val) {
     this.selectedTitle = val.split('/')[0];
-    const map = this.cachedStats[this.selectedTitle.toLowerCase()];
+    const map = this.cachedStats[this.selectedTitle];
     this.stats = {'entropy': map['entropy']};
     this.isImage = true;
   }
 
   setGraphStats(path) {
     this.selectedTitle = path.split('/')[0];
-    const map = this.cachedStats[this.selectedTitle.toLowerCase()];
-    this.stats = {'edges': map['edges'], 'density': map['density'], 'Average Degree': map['Average Degree'], 'nodes': map['nodes']};
+    const map = this.cachedStats[this.selectedTitle];
+    this.stats = {'nodes': map['nodes'], 'edges': map['edges'], 'density': map['density'], 'Average Degree': map['Average Degree']};
     this.isImage = false;
   }
 
@@ -223,43 +229,6 @@ export class ExploreComponent implements OnInit, AfterViewInit {
   }
 
   async ngOnInit() {
-    this.data = await this.dataService.getImageData().then(async result => {
-      return result.filter(data => data.id !== "0")
-    });
-    this.graphData = await this.dataService.getGraphData().then(async result => {
-      return result.filter(data => data.id !== "0")
-    });
-
-    this.graphFields = { dataSource: this.graphData, id: 'id', text: 'text', child: 'children'};
-    this.fields = { dataSource: this.data, id: 'id', text: 'text', child: 'children'};
-    this.navService.changeNavColor.next(true);
-
-    await this.loaderConfigService
-        .fetchStats()
-        .then(async result => {
-          this.cachedStats = result;
-        });
-    if(this.referred) {
-      if (this.loadGraphInit) {
-        const val = this.findNode(this.loadGraphInitId, this.graphData, 'assets/graph/');
-        this.loadGraph(val + '/' + this.initGraphImage);
-        this.firstStats = val.split("/")[2];
-        this.setGraphStats(this.firstStats);
-        this.treeGraph.refresh();
-      } else {
-        const val = this.findNode(this.loadGraphInitId, this.data, 'assets/image/');
-        this.image = val + '/' + this.initGraphImage;
-        this.firstStats = val.split("/")[2];
-        this.setImageStats(this.firstStats);
-        this.tree.refresh();
-      }
-    } else {
-      const val = this.selectFirstNodeReturn(this.graphData, 'assets/graph/');
-      this.loadGraph(val);
-      this.firstStats = val.split("/")[2];
-      this.setGraphStats(this.firstStats);
-      this.treeGraph.refresh();
-    }
   }
 
   toggleSearchBar() {
@@ -292,7 +261,7 @@ export class ExploreComponent implements OnInit, AfterViewInit {
     this.toolTips[this.toolTipPosition].open();
     this.toolTips[this.toolTipPosition].disablePopover = true;
   }
-  ngAfterViewInit(): void {
+  async ngAfterViewInit() {
     this.toolTips.push(this.graphId);
     //this.toolTips.push(this.data);
     this.toolTips.push(this.closeId);
@@ -307,6 +276,41 @@ export class ExploreComponent implements OnInit, AfterViewInit {
     this.toolTipPosition = 0;
     this.toolTips.forEach( item => item.disablePopover = true);
 
+    this.data = await this.dataService.getImageData().then(async result => {
+      return result.filter(data => data.id !== "0")
+    });
+    this.graphData = await this.dataService.getGraphData().then(async result => {
+      return result.filter(data => data.id !== "0")
+    });
+
+    this.navService.changeNavColor.next(true);
+
+    await this.loaderConfigService
+        .fetchStats()
+        .then(async result => {
+          this.cachedStats = result;
+        });
+
+    if(this.referred) {
+      if (this.loadGraphInit) {
+        const val = this.findNode(this.loadGraphInitId, this.graphData, 'assets/graph/');
+        this.loadGraph(val + '/' + this.initGraphImage);
+        this.firstStats = val.split("/")[2];
+        this.setGraphStats(this.firstStats);
+      } else {
+        const val = this.findNode(this.loadGraphInitId, this.data, 'assets/image/');
+        this.image = val + '/' + this.initGraphImage;
+        this.firstStats = val.split("/")[2];
+        this.setImageStats(this.firstStats);
+      }
+    } else {
+      const val = this.selectFirstNodeReturn(this.graphData, 'assets/graph/');
+      this.loadGraph(val);
+      this.firstStats = val.split("/")[2];
+      this.setGraphStats(this.firstStats);
+    }
+    this.graphFields = { dataSource: this.graphData, id: 'id', text: 'text', child: 'children'};
+    this.fields = { dataSource: this.data, id: 'id', text: 'text', child: 'children'};
     //this.loadGraph('assets/preview-graph.json');
   }
 }

@@ -15,6 +15,9 @@
     <div class="collapse navbar-collapse" [ngClass]="{ 'show': navbarOpen }" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item">
+                <a href="#About" class="nav-link js-scroll-trigger" >About</a>
+            </li>
+            <li class="nav-item">
                 <a href="#Team" class="nav-link js-scroll-trigger" >Team</a>
             </li>
             <li class="nav-item">
@@ -74,9 +77,9 @@
 <div id="statsPanel" [ngClass]="searchSize ? '' : 'hide'">
     <div class="statsContainer">
         <ul>
-            <li *ngFor="let item of stats | keyvalue">
+            <li *ngFor="let item of stats | keyvalue: originalOrder">
                 <div *ngIf="item.key === 'density' || item.key ==='Average Degree' ||item.key === 'edges' || item.key === 'entropy' || item.key === 'nodes'" class="container-img">
-                    <p>{{item.key.charAt(0).toUpperCase() + item.key.slice(1)}}</p>
+                    <p>{{item.key.toString().charAt(0).toUpperCase() + item.key.toString().slice(1)}}</p>
                     <img src="assets/preview.jpg" (click)="openDialog(item.value, item.key)" class="statsItem"/>
                 </div>
             </li>
