@@ -95,7 +95,7 @@ export class ExploreComponent implements OnInit, AfterViewInit {
     for(let x = 0; x < node.length; x++) {
       if(id === node[x]["id"]) {
         node[x]['expanded'] = true;
-        this.selectFirstNode(node);
+        this.selectFirstNode(node[x]);
         return path + node[x]['text'];
         break;
       }
@@ -113,12 +113,12 @@ export class ExploreComponent implements OnInit, AfterViewInit {
   }
 
   selectFirstNode(node) {
-    if(node[0]["children"] !== undefined && node[0]["children"] !== null) {
-      node[0]['expanded'] = true;
-      this.selectFirstNode(node[0]["children"]);
+    if(node["children"] !== undefined && node["children"] !== null && node["children"].length !== 0) {
+      node['expanded'] = true;
+      this.selectFirstNode(node["children"][0]);
     } else {
-      node[0]['selected'] = true;
-      this.initGraphImage = node[0]['text'];
+      node['selected'] = true;
+      this.initGraphImage = node['text'];
     }
   }
 
@@ -311,6 +311,5 @@ export class ExploreComponent implements OnInit, AfterViewInit {
     }
     this.graphFields = { dataSource: this.graphData, id: 'id', text: 'text', child: 'children'};
     this.fields = { dataSource: this.data, id: 'id', text: 'text', child: 'children'};
-    //this.loadGraph('assets/preview-graph.json');
   }
 }

@@ -6,21 +6,21 @@
             <div *ngFor="let download of downloadsData; let i = index; first as isFirst; last as isLast">
                 <div class="row">
                     <div class="col-md-1"></div>
-                    <div class="col-md-4">
+                    <div class="col-md-4 clickable" (click)="goToLink(download['list'][0]['image-link'])">
                         <h3>{{download['list'][0]['name']}}</h3>
                         <i class="fas fa-2x fa-arrow-circle-down"></i>
                         <br>
                         <br>
-                        <a href="{{download['list'][0]['image-link']}}" ><img  class="faded-edge-img" src="{{download['list'][0]['image-url']}}" [ngStyle]="download['list'][0]['style']"/></a>
+                        <img  class="faded-edge-img" src="{{download['list'][0]['image-url']}}" [ngStyle]="download['list'][0]['style']"/>
                         <p class="download-p" [innerHtml]="download['list'][0]['text']"></p>
                     </div>
                     <div class="col-md-2" *ngIf="download['list'].length === 2"><div class="vertical"></div> </div>
-                    <div class="col-md-4" *ngIf="download['list'].length === 2">
+                    <div class="col-md-4 clickable" *ngIf="download['list'].length === 2" (click)="goToLink(download['list'][0]['image-link'])">
                         <h3>{{download['list'][1]['name']}}</h3>
                         <i class="fas fa-2x fa-arrow-circle-down"></i>
                         <br>
                         <br>
-                        <a href="{{download['list'][1]['image-link']}}" ><img  class="faded-edge-img" src="{{download['list'][1]['image-url']}}" [ngStyle]="download['list'][1]['style']" /></a>
+                        <img  class="faded-edge-img" src="{{download['list'][1]['image-url']}}" [ngStyle]="download['list'][1]['style']" />
                         <p class="download-p" [innerHtml]="download['list'][1]['text']"></p>
                     </div>
                     <div class="col-md-1"></div>

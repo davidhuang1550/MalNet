@@ -1,7 +1,7 @@
 
 <div [ngClass]="(navHidden) ? 'navHidden' : ''">
     <nav class="navbar navbar-expand-sm navbar-light fixed-top" [ngClass]="(navBarCollapse) ? 'navbar-shrink' : ''" id="mainNav">
-        <div class="container">
+        <div class="container-fluid">
             <a *ngIf="navBarCollapse || blackBar" class="navbar-brand js-scroll-trigger" href="#home" [ngClass]="(navbarShrink) ? 'white': ''"><img width="40" height="40" src="assets/malware_symbol_white.png"/></a>
             <a *ngIf="!navBarCollapse && !blackBar" class="navbar-brand js-scroll-trigger" href="#home" [ngClass]="(navbarShrink) ? 'white': ''"><img width="40" height="40" src="assets/malware_symbol.png"/></a>
             <button  class="navbar-toggler navbar-toggler-right white" (click)="toggleNavbar()" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">

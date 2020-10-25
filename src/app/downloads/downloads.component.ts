@@ -20,4 +20,7 @@ export class DownloadsComponent implements OnInit {
         });
   }
 
+  goToLink(url) {
+      window.open(url, "_blank");
+  }
 }
