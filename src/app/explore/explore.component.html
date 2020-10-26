@@ -61,7 +61,7 @@
             </div>
         </div>
         <mat-tab-group  [ngbPopover]="popContentGraph"
-                        [autoClose]="false" placement="right" #graphId="ngbPopover"
+                        [autoClose]="false" placement="right auto" #graphId="ngbPopover"
                         [ngClass]="searchSize ? '' : 'hide'" [selectedIndex]="position" animationDuration="10ms">
             <mat-tab
                      label="Graph">
@@ -74,7 +74,7 @@
         </mat-tab-group>
     </div>
 </div>
-<div id="statsPanel" [ngClass]="searchSize ? '' : 'hide'">
+<div id="statsPanel" [ngClass]="expand ? '' : 'hide'">
     <div class="statsContainer">
         <ul>
             <li *ngFor="let item of stats | keyvalue: originalOrder">

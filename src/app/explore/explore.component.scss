@@ -231,6 +231,7 @@
 }
 .e-treeview > .e-ul {
     overflow-y: hidden ;
+    overflow-x: hidden;
 }
 .e-treeview .e-icon-collapsible, .e-treeview .e-icon-expandable {
     color: #636366;
@@ -252,5 +253,6 @@
 
 .customTree {
     height: 100%;
-    overflow: auto;
+    overflow-y: auto;
+    overflow-x: hidden;
 }
