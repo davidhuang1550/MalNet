@@ -50,7 +50,7 @@
     height: 500px!important;
 }
 .e-hover {
-    background-color: #45a3de!important;
+    background-color: #232e36!important;
 
 }
 .tool-tip-custom .tooltip-inner {
@@ -60,11 +60,11 @@
     border: 0px!important;
 }
 .e-treeview .e-list-item.e-active.e-hover > .e-fullrow {
-    background-color: #45a3de!important;
+    background-color: #232e36!important;
 }
 .e-treeview .e-list-item.e-active > .e-fullrow {
-    background-color: #45a3de;
-    border-color: #45a3de;
+    background-color: #232e36;
+    border-color: #232e36;
 }
 .e-treeview .e-list-item {
     padding: 0px!important;
@@ -74,12 +74,15 @@
     padding: 0!important;
 }
 .e-treeview .e-list-item.e-hover > .e-fullrow {
-    border-color: #45a3de!important;
-    background-color: #45a3de!important;
+    border-color: #232e36!important;
+    background-color: #232e36!important;
     left: -20px!important;
 }
 .e-treeview .e-list-item.e-hover > .e-text-content .e-list-text {
     color: #5c7d94!important;
+}
+.e-treeview .e-list-item.e-active > .e-text-content .e-list-text {
+    color: #45a3de !important;
 }
 .e-text-content {
     text-align: left!important;
@@ -91,7 +94,7 @@
     vertical-align: middle;
 }
 .mat-tab-label-active {
-    background-color: #45a3de!important;
+    background-color: #232e36!important;
 }
 mat-tab{
     height: 100vh !important;
