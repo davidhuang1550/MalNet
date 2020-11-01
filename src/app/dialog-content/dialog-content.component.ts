@@ -13,7 +13,6 @@ export class DialogContentComponent implements OnInit, AfterViewInit {
 
   constructor(@Inject(MAT_DIALOG_DATA) public data: any, private readonly elementRef: ElementRef, private readonly ngZone: NgZone) { }
 
-  // @ts-ignore
   ngOnInit() {
     this.graph = {
       data: [

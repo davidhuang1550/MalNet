@@ -26,22 +26,18 @@ export class DataService {
             });
     }
     async getImageData() {
-        if(this.imageDataObj == null) {
-            await this.fetch(this.imageData)
-                .then(async result => {
-                    this.imageDataObj = result;
-                });
-        }
+        await this.fetch(this.imageData)
+            .then(async result => {
+                this.imageDataObj = result;
+            });
         return this.imageDataObj;
     }
 
     async getGraphData() {
-        if(this.graphDataObj == null) {
-            await this.fetch(this.graphData)
+        await this.fetch(this.graphData)
                 .then(async result => {
                     this.graphDataObj = result;
                 });
-        }
         return this.graphDataObj;
     }
 }

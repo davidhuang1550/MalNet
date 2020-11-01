@@ -1,4 +1,4 @@
-import {AfterViewInit, Component, OnInit, ViewChild} from '@angular/core';
+import {AfterViewInit, Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {MatDialog} from '@angular/material';
 import {TreeViewComponent} from '@syncfusion/ej2-angular-navigations';
 import {Router} from '@angular/router';
@@ -10,6 +10,8 @@ import {DialogContentComponent} from '../dialog-content/dialog-content.component
 import {LoaderConfigService} from '../service/loader-config-service';
 import {DataService} from "../service/data-service";
 import {KeyValue} from "@angular/common";
+import html2canvas from "html2canvas";
+import {Plotly} from "angular-plotly.js/lib/plotly.interface";
 
 @Component({
   selector: 'app-explore',
@@ -49,9 +51,8 @@ export class ExploreComponent implements OnInit, AfterViewInit {
   originalOrder = (a: KeyValue<number,string>, b: KeyValue<number,string>): number => {
     return 0;
   }
-
   cachedStats = [];
-
+  srcPloty = "";
   // for graph
   width;
   // for graph
@@ -68,6 +69,7 @@ export class ExploreComponent implements OnInit, AfterViewInit {
   firstStats;
   loadGraphInitId;
   referred = false;
+  statsImage = {};
   constructor(private router: Router,
               private edgeListService: EdgelistService,
               private loaderConfigService: LoaderConfigService,
@@ -161,34 +163,57 @@ export class ExploreComponent implements OnInit, AfterViewInit {
     }
   }
 
-  public onNodeSelectedImage(args) {
+  async onNodeSelectedImage(args) {
     const val = this.onNodeSelected(args, this.tree);
     if(val.endsWith('.png') || val.endsWith('.jpg') || val.endsWith('.jpeg')) {
       this.image = 'assets/image/' +  val;
-      this.setImageStats(val);
+      await this.setImageStats(val);
     }
   }
 
-  setImageStats(val) {
+  async setImageStats(val) {
     this.selectedTitle = val.split('/')[0];
     const map = this.cachedStats[this.selectedTitle];
     this.stats = {'entropy': map['entropy']};
+    await this.createStatsItemGraph(map['entropy'], 'entropy-graph')
+        .then( url => {
+          this.statsImage['entropy'] = url;
+        });
     this.isImage = true;
   }
 
-  setGraphStats(path) {
+ async  setGraphStats(path) {
     this.selectedTitle = path.split('/')[0];
     const map = this.cachedStats[this.selectedTitle];
     this.stats = {'nodes': map['nodes'], 'edges': map['edges'], 'density': map['density'], 'Average Degree': map['Average Degree']};
+    await this.createStatsItemGraph(map['nodes'], 'node-graph')
+        .then( url => {
+          this.statsImage['nodes'] = url;
+        });
+    await this.createStatsItemGraph(map['edges'], 'edge-graph')
+        .then( url => {
+          this.statsImage['edges'] = url;
+        });
+    await this.createStatsItemGraph(map['density'], 'density-graph')
+        .then( url => {
+          console.log(url);
+          this.statsImage['density'] = url;
+        });
+    await this.createStatsItemGraph(map['Average Degree'], 'avg-graph')
+        .then( url => {
+          console.log(url);
+          this.statsImage['Average Degree'] = url;
+        });
+
     this.isImage = false;
   }
 
-  public onNodeSelectedGraph(args) {
+   async onNodeSelectedGraph(args) {
     const path = this.onNodeSelected(args, this.treeGraph);
     const graph = 'assets/graph/' +  path;
     if(path.endsWith('.json')) {
       this.loadGraph(graph);
-      this.setGraphStats(path);
+      await this.setGraphStats(path);
     }
   }
 
@@ -196,7 +221,7 @@ export class ExploreComponent implements OnInit, AfterViewInit {
     this.navbarOpen = !this.navbarOpen;
   }
 
-  public loadGraph(fileName: string) {
+   loadGraph(fileName: string) {
     this.edgeListService.load(fileName)
         .then( result => {
           const resultObj = JSON.parse(result);
@@ -229,6 +254,32 @@ export class ExploreComponent implements OnInit, AfterViewInit {
   }
 
   async ngOnInit() {
+  }
+
+  createStatsItemGraph(data: any, id): Promise<string> {
+    // @ts-ignore
+    return Plotly.plot(id, [ {
+      y: [data["minmax"][0],
+        data["q25"],
+        data["q50"],
+        data["q75"],
+        data["minmax"][1]],
+      type: 'box',
+      name: '',
+      marker: {color: '#007ee5'}
+    }],{plot_bgcolor:"#182026",
+      paper_bgcolor:"#182026",
+      font: {
+        color: 'white'
+      },
+      boxgap: 0.9,
+      title: this.selectedTitle.toUpperCase()
+    }).then( gd => {
+      // @ts-ignore
+      return Plotly.toImage(gd, {format: 'jpeg'});
+    }).then( dataURI => {
+      return dataURI;
+    });
   }
 
   toggleSearchBar() {
@@ -296,20 +347,21 @@ export class ExploreComponent implements OnInit, AfterViewInit {
         const val = this.findNode(this.loadGraphInitId, this.graphData, 'assets/graph/');
         this.loadGraph(val + '/' + this.initGraphImage);
         this.firstStats = val.split("/")[2];
-        this.setGraphStats(this.firstStats);
+        await this.setGraphStats(this.firstStats);
       } else {
         const val = this.findNode(this.loadGraphInitId, this.data, 'assets/image/');
         this.image = val + '/' + this.initGraphImage;
         this.firstStats = val.split("/")[2];
-        this.setImageStats(this.firstStats);
+        await this.setImageStats(this.firstStats);
       }
     } else {
       const val = this.selectFirstNodeReturn(this.graphData, 'assets/graph/');
       this.loadGraph(val);
       this.firstStats = val.split("/")[2];
-      this.setGraphStats(this.firstStats);
+      await this.setGraphStats(this.firstStats);
     }
     this.graphFields = { dataSource: this.graphData, id: 'id', text: 'text', child: 'children'};
     this.fields = { dataSource: this.data, id: 'id', text: 'text', child: 'children'};
+
   }
 }
