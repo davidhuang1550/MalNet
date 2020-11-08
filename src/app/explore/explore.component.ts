@@ -68,6 +68,7 @@ export class ExploreComponent implements OnInit, AfterViewInit {
   loadGraphInit = false;
   firstStats;
   loadGraphInitId;
+  visibleStatsTab = false;
   referred = false;
   statsImage = {};
   constructor(private router: Router,
@@ -362,6 +363,11 @@ export class ExploreComponent implements OnInit, AfterViewInit {
     }
     this.graphFields = { dataSource: this.graphData, id: 'id', text: 'text', child: 'children'};
     this.fields = { dataSource: this.data, id: 'id', text: 'text', child: 'children'};
+
+    if(this.width <= 992) {
+        this.searchSize = false;
+        this.visibleStatsTab = true;
+    }
 
   }
 }

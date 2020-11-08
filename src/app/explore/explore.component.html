@@ -71,6 +71,25 @@
                      label="Image">
                 <ejs-treeview cssClass="customTree" #tree (nodeSelected)="onNodeSelectedImage($event)" class="ejs-tree" id="default"  [fields]='fields'></ejs-treeview>
             </mat-tab>
+            <mat-tab *ngIf="visibleStatsTab"
+                     label="Stats">
+                <div class="statsContainer-sm">
+                    <ul>
+                        <li *ngFor="let item of stats | keyvalue: originalOrder">
+                            <div *ngIf="item.key === 'density' || item.key ==='Average Degree' ||item.key === 'edges' || item.key === 'entropy' || item.key === 'nodes'" class="container-img">
+                                <p>{{item.key.toString().charAt(0).toUpperCase() + item.key.toString().slice(1)}} Type</p>
+                                <img src="{{statsImage[item.key]}}" (click)="openDialog(item.value, item.key)" class="statsItem"/>
+                            </div>
+                        </li>
+                        <li *ngIf="isImage ? 'hide': ''">
+                            <div class="container-img">
+                                <p>DEX File Legend</p>
+                                <img src="assets/image_desc.png" class="image-desc" />
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </mat-tab>
         </mat-tab-group>
     </div>
 </div>

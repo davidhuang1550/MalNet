@@ -71,6 +71,15 @@
     .ham-nav-item-displayed {
 
     }
+    .statsContainer-sm {
+        height: 100% !important;
+        overflow: auto!important;
+    }
+    .statsItem {
+        width: 200px!important;
+        height: 110px!important;
+    }
+
 }
 
 @media (min-width: 992px) {
@@ -198,6 +207,18 @@
     padding:5px;
     text-align: center;
 }
+.statsContainer-sm {
+    height: 100%;
+}
+
+.statsContainer-sm ul {
+    list-style-type: none;
+    padding: 0px!important;
+}
+
+.statsContainer-sm ul li:hover {
+    cursor: pointer;
+}
 .statsContainer {
     padding-top:90px;
 }
@@ -211,14 +232,16 @@
 }
 
 .statsItem {
-    width: 250px;
-    height: 150px;
+    width: 225px;
+    height: 130px;
     margin:15px;
     -webkit-box-shadow: 2px 1px 5px 0.1px #0f151a;  /* Safari 3-4, iOS 4.0.2 - 4.2, Android 2.3+ */
     -moz-box-shadow:    2px 1px 5px 0.1px #0f151a;  /* Firefox 3.5 - 3.6 */
     box-shadow: 2px 1px 5px 4px #0f151a;
     padding: 0px!important;
 }
+
+
 .select-panel {
     height: 100%;
     padding-top:90px;
