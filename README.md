@@ -12,7 +12,15 @@ Run `ng generate component component-name` to generate a new component. You can 
 
 ## Build
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+Run `ng build --prod --base-href https://user.github.io/Malnet/`
+
+replace user with github username.
+
+move dist/Malnet/* to dist folder
+
+Run ngh to publish change
+
+follow instructions here https://dzone.com/articles/how-to-deploy-an-angular-application-to-github
 
 ## Running unit tests
 
@@ -21,6 +29,37 @@ Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.
 ## Running end-to-end tests
 
 Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+
+## Installing Dependencies
+
+Run npm  install,
+
+modify following node_module file
+
+force-graph/src/index.d.ts
+
+add below comment.
+
+// @ts-ignore
+export type ForceGraphInstance = ForceGraphGenericInstance<ForceGraphInstance>;
+
+## Project configuration changes
+
+assets/config/about.json <br>
+assets/config/citations.json <br>
+assets/config/downloads.json <br>
+assets/config/faq.json <br>
+assets/config/graph.json <br>
+assets/config/home.json <br>
+assets/config/image.json <br>
+assets/config/particles.json <br>
+assets/config/stats.json <br>
+assets/config/team.json <br>
+
+## Graphs and Image files for plots
+
+assets/graph/
+assets/image/
 
 ## Further help
 
