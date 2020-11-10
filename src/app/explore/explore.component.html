@@ -77,7 +77,7 @@
                     <ul>
                         <li *ngFor="let item of stats | keyvalue: originalOrder">
                             <div *ngIf="item.key === 'density' || item.key ==='Average Degree' ||item.key === 'edges' || item.key === 'entropy' || item.key === 'nodes'" class="container-img">
-                                <p>{{item.key.toString().charAt(0).toUpperCase() + item.key.toString().slice(1)}} Type</p>
+                                <p>{{item.key.toString().charAt(0).toUpperCase() + item.key.toString().slice(1)}}: {{this.selectedTitle}}</p>
                                 <img src="{{statsImage[item.key]}}" (click)="openDialog(item.value, item.key)" class="statsItem"/>
                             </div>
                         </li>
@@ -98,7 +98,7 @@
         <ul>
             <li *ngFor="let item of stats | keyvalue: originalOrder">
                 <div *ngIf="item.key === 'density' || item.key ==='Average Degree' ||item.key === 'edges' || item.key === 'entropy' || item.key === 'nodes'" class="container-img">
-                    <p>{{item.key.toString().charAt(0).toUpperCase() + item.key.toString().slice(1)}} Type</p>
+                    <p>{{item.key.toString().charAt(0).toUpperCase() + item.key.toString().slice(1)}}: {{this.selectedTitle}}</p>
                     <img src="{{statsImage[item.key]}}" (click)="openDialog(item.value, item.key)" class="statsItem"/>
                 </div>
             </li>
