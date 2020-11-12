@@ -183,7 +183,7 @@ export class ExploreComponent implements OnInit, AfterViewInit {
     this.isImage = true;
   }
 
- async  setGraphStats(path) {
+ async setGraphStats(path) {
     this.selectedTitle = path.split('/')[0];
     const map = this.cachedStats[this.selectedTitle];
     this.stats = {'nodes': map['nodes'], 'edges': map['edges'], 'density': map['density'], 'Average Degree': map['Average Degree']};
@@ -258,8 +258,9 @@ export class ExploreComponent implements OnInit, AfterViewInit {
   }
 
   createStatsItemGraph(data: any, id): Promise<string> {
+      document.getElementById(id).innerHTML = "";
     // @ts-ignore
-    return Plotly.plot(id, [ {
+    return Plotly.newPlot(id, [ {
       y: [data["minmax"][0],
         data["q25"],
         data["q50"],
