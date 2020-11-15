@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, HostListener, OnInit} from '@angular/core';
 import $ from 'jquery';
 import {NavService} from '../service/nav.service';
 @Component({
@@ -37,6 +37,11 @@ export class NavComponent implements OnInit {
     this.navService.changeNavColor.subscribe( color => {
       this._navHidden = color;
     });
+  }
+
+  @HostListener('window:popstate', ['$event'])
+  onPopState(event) {
+    this._navHidden = false;
   }
 
   scroll(el: HTMLElement) {
